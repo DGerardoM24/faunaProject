@@ -13,16 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->integer('id')->autoIncrement();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+        Schema::create('tratamientos', function (Blueprint $table) {
+            $table->integer('id_tratamiento')->autoIncrement();
+            $table->string('nombre_tratamiento', 250)->nullable();
+            $table->string('descripcion', 250)->nullable();
             $table->timestamps();
+
+            $table->unique('id_tratamiento');
         });
     }
+
 
     /**
      * Reverse the migrations.
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('tratamientos');
     }
 };
