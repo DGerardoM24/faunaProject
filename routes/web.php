@@ -21,7 +21,5 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/especie', function () {
-    return view('especie');
-});
+Route::get('/especies', [App\Http\Controllers\EspeciesController::class, 'especies.index'])->name('especies');
 
