@@ -7,6 +7,10 @@
             <a href="/estados-conservacions" class="list-group-item list-group-item-action">Estados de Conservación</a>
             <a href="/entornos" class="list-group-item list-group-item-action">Entornos</a>
             <a href="/dietas" class="list-group-item list-group-item-action">Dietas</a>
+            <a href="/familias" class="list-group-item list-group-item-action">Familias</a>
+            <a href="/rutas" class="list-group-item list-group-item-action">Rutas</a>
+            <a href="/multimedia" class="list-group-item list-group-item-action">Multimedia</a>
+            <a href="/enfermedades" class="list-group-item list-group-item-action">Enfermedades</a>
             <a href="/grupos" class="list-group-item list-group-item-action">Grupos</a>
         </div>
     </div>

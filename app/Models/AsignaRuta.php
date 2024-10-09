@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class AsignaRuta extends Model
 {
-    
+
     protected $perPage = 20;
 
     /**
@@ -36,7 +36,7 @@ class AsignaRuta extends Model
     {
         return $this->belongsTo(\App\Models\Especy::class, 'id_especie', 'id_especie');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -44,5 +44,4 @@ class AsignaRuta extends Model
     {
         return $this->belongsTo(\App\Models\Ruta::class, 'id_ruta', 'id_ruta');
     }
-    
 }

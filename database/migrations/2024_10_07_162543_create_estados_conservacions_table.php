@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('estados_conservacion', function (Blueprint $table) {
+        Schema::create('estados_conservacions', function (Blueprint $table) {
             $table->bigIncrements('id_estado_conservacion');
             $table->string('desc_estado', 250)->nullable();
             $table->timestamps();

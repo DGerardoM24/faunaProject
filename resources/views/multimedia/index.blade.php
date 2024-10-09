@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="container-fluid">
+    <div class="container-fluid" style="margin-top: 50px;">
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
@@ -16,11 +16,12 @@
                                 {{ __('Multimedia') }}
                             </span>
 
-                             <div class="float-right">
-                                <a href="{{ route('multimedia.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
+                            <div class="float-right">
+                                <a href="{{ route('multimedia.create') }}" class="btn btn-primary btn-sm float-right"
+                                    data-placement="left">
+                                    {{ __('Create New') }}
                                 </a>
-                              </div>
+                            </div>
                         </div>
                     </div>
                     @if ($message = Session::get('success'))
@@ -35,30 +36,39 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
-									<th >Id Multimedia</th>
-									<th >Nombre</th>
-									<th >Multimedia</th>
+                                        <th>Nombre</th>
+                                        <th>Multimedia</th>
 
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($multimedia as $multimedia)
+                                    @foreach ($multimedia as $item)
                                         <tr>
-                                            <td>{{ ++$i }}</td>
-                                            
-										<td >{{ $multimedia->id_multimedia }}</td>
-										<td >{{ $multimedia->nombre }}</td>
-										<td >{{ $multimedia->multimedia }}</td>
+                                            <td>{{ $item->id_multimedia }}</td>
+                                            <td>{{ $item->nombre }}</td>
+                                            <td>
+                                                @if($item->multimedia)
+                                                <img src="{{ asset('storage/' . $item->multimedia) }}" alt="{{ $item->nombre }}" width="100" class="img-thumbnail">
+                                                @else
+                                                    <p>No image available</p>
+                                                @endif
+                                            </td>
 
                                             <td>
-                                                <form action="{{ route('multimedia.destroy', $multimedia->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('multimedia.show', $multimedia->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('multimedia.edit', $multimedia->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                <form action="{{ route('multimedia.destroy', $item->id_multimedia) }}"
+                                                    method="POST">
+                                                    <a class="btn btn-sm btn-primary "
+                                                        href="{{ route('multimedia.show', $item->id_multimedia) }}"><i
+                                                            class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
+                                                    <a class="btn btn-sm btn-success"
+                                                        href="{{ route('multimedia.edit', $item->id_multimedia) }}"><i
+                                                            class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"
+                                                        onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;"><i
+                                                            class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
                                                 </form>
                                             </td>
                                         </tr>

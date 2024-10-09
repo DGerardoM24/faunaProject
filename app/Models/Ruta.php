@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Ruta extends Model
 {
-    
+    protected $primaryKey='id_ruta';
     protected $perPage = 20;
 
     /**
@@ -37,5 +37,5 @@ class Ruta extends Model
     {
         return $this->hasMany(\App\Models\AsignaRuta::class, 'id_ruta', 'id_ruta');
     }
-    
+
 }

@@ -6,24 +6,19 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class RutaRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
-    public function authorize(): bool
+    public function authorize()
     {
-        return true;
+        return true; // Asegúrate de que está autorizado
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
-    public function rules(): array
+    public function rules()
     {
         return [
-			'id_ruta' => 'required',
-			'desc_ruta' => 'string',
+            'id_ruta' => 'required|string|max:255',
+            'desc_ruta' => 'required|string|max:255',
+            'rango' => 'required|numeric|min:1|max:100',  // Valida el campo "rango"
         ];
     }
+
+
 }

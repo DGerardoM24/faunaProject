@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('multimedia', function (Blueprint $table) {
             $table->bigIncrements('id_multimedia');
             $table->string('nombre', 100)->nullable(); // Nombre del archivo multimedia
-            $table->binary('multimedia')->nullable(); // Contenido del archivo multimedia en formato blob
+            $table->string('multimedia',200)->nullable(); // Contenido del archivo multimedia en formato blob
             $table->timestamps();
 
         });

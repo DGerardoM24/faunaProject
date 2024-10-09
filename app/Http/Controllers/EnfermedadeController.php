@@ -6,6 +6,7 @@ use App\Models\Enfermedade;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\EnfermedadeRequest;
+use App\Models\TipoEnfermedade;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
@@ -15,22 +16,25 @@ class EnfermedadeController extends Controller
      * Display a listing of the resource.
      */
     public function index(Request $request): View
-    {
-        $enfermedades = Enfermedade::paginate();
+{
+    // Usar with() para cargar la relación tipoEnfermedade con eager loading
+    $enfermedades = Enfermedade::with('tipoEnfermedade')->paginate();
 
-        return view('enfermedade.index', compact('enfermedades'))
-            ->with('i', ($request->input('page', 1) - 1) * $enfermedades->perPage());
-    }
+    return view('enfermedade.index', compact('enfermedades'))
+        ->with('i', ($request->input('page', 1) - 1) * $enfermedades->perPage());
+}
+
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): View
-    {
-        $enfermedade = new Enfermedade();
+    public function create()
+{
+    $enfermedade = new Enfermedade();
+    $tipos_enfermedades = TipoEnfermedade::all(); // Cargar todos los tipos de enfermedades
+    return view('enfermedade.create', compact('tipos_enfermedades', 'enfermedade'));
+}
 
-        return view('enfermedade.create', compact('enfermedade'));
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -48,7 +52,7 @@ class EnfermedadeController extends Controller
      */
     public function show($id): View
     {
-        $enfermedade = Enfermedade::find($id);
+        $enfermedade = Enfermedade::where('id_enfermedad',$id)->first();
 
         return view('enfermedade.show', compact('enfermedade'));
     }
@@ -56,12 +60,12 @@ class EnfermedadeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id): View
-    {
-        $enfermedade = Enfermedade::find($id);
+    public function edit(Enfermedade $enfermedade)
+{
+    $tipos_enfermedades = TipoEnfermedade::all(); // Cargar todos los tipos de enfermedades
+    return view('enfermedade.edit', compact('enfermedade', 'tipos_enfermedades'));
+}
 
-        return view('enfermedade.edit', compact('enfermedade'));
-    }
 
     /**
      * Update the specified resource in storage.
@@ -76,7 +80,7 @@ class EnfermedadeController extends Controller
 
     public function destroy($id): RedirectResponse
     {
-        Enfermedade::find($id)->delete();
+        Enfermedade::where('id_enfermedad',$id)->delete();
 
         return Redirect::route('enfermedades.index')
             ->with('success', 'Enfermedade deleted successfully');

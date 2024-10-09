@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class TipoEnfermedade extends Model
 {
-    
+
     protected $perPage = 20;
 
     /**
@@ -34,7 +34,7 @@ class TipoEnfermedade extends Model
      */
     public function enfermedades()
     {
-        return $this->hasMany(\App\Models\Enfermedade::class, 'id_tipo', 'id_tipo');
+        return $this->hasMany(Enfermedade::class, 'id_tipo');
     }
-    
+
 }

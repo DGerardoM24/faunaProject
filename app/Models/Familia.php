@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Familia extends Model
 {
-    
+    protected $primaryKey='id_familia';
     protected $perPage = 20;
 
     /**
@@ -36,5 +36,5 @@ class Familia extends Model
     {
         return $this->hasMany(\App\Models\Especy::class, 'id_familia', 'id_familia');
     }
-    
+
 }

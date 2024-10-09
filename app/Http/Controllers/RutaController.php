@@ -48,7 +48,7 @@ class RutaController extends Controller
      */
     public function show($id): View
     {
-        $ruta = Ruta::find($id);
+        $ruta = Ruta::where('id_ruta',$id)->first();
 
         return view('ruta.show', compact('ruta'));
     }
@@ -58,7 +58,7 @@ class RutaController extends Controller
      */
     public function edit($id): View
     {
-        $ruta = Ruta::find($id);
+        $ruta = Ruta::where('id_ruta',$id)->first();
 
         return view('ruta.edit', compact('ruta'));
     }
@@ -76,7 +76,7 @@ class RutaController extends Controller
 
     public function destroy($id): RedirectResponse
     {
-        Ruta::find($id)->delete();
+        Ruta::where('id_ruta',$id)->delete();
 
         return Redirect::route('rutas.index')
             ->with('success', 'Ruta deleted successfully');

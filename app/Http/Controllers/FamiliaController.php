@@ -48,7 +48,7 @@ class FamiliaController extends Controller
      */
     public function show($id): View
     {
-        $familia = Familia::find($id);
+        $familia = Familia::where('id_familia',$id)->first();
 
         return view('familia.show', compact('familia'));
     }
@@ -58,7 +58,7 @@ class FamiliaController extends Controller
      */
     public function edit($id): View
     {
-        $familia = Familia::find($id);
+        $familia = Familia::where('id_familia',$id)->first();
 
         return view('familia.edit', compact('familia'));
     }
@@ -76,7 +76,7 @@ class FamiliaController extends Controller
 
     public function destroy($id): RedirectResponse
     {
-        Familia::find($id)->delete();
+        Familia::where('id_familia',$id)->delete();
 
         return Redirect::route('familias.index')
             ->with('success', 'Familia deleted successfully');

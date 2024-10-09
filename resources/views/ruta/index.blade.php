@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="container-fluid">
+    <div class="container-fluid" style="margin-top:50px;">
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
@@ -35,8 +35,6 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
-									<th >Id Ruta</th>
 									<th >Desc Ruta</th>
 									<th >Rango</th>
 
@@ -46,16 +44,15 @@
                                 <tbody>
                                     @foreach ($rutas as $ruta)
                                         <tr>
-                                            <td>{{ ++$i }}</td>
-                                            
+
 										<td >{{ $ruta->id_ruta }}</td>
 										<td >{{ $ruta->desc_ruta }}</td>
 										<td >{{ $ruta->rango }}</td>
 
                                             <td>
-                                                <form action="{{ route('rutas.destroy', $ruta->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('rutas.show', $ruta->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('rutas.edit', $ruta->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                <form action="{{ route('rutas.destroy', $ruta->id_ruta) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('rutas.show', $ruta->id_ruta) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('rutas.edit', $ruta->id_ruta) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>

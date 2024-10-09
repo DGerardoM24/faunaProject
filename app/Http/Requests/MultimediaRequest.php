@@ -22,8 +22,9 @@ class MultimediaRequest extends FormRequest
     public function rules(): array
     {
         return [
-			'id_multimedia' => 'required',
-			'nombre' => 'string',
+            'id_multimedia' => 'required|string|max:255',
+            'nombre' => 'required|string|max:255',
+            'multimedia' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validación para imágenes
         ];
     }
 }

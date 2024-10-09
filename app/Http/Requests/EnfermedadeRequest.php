@@ -26,6 +26,7 @@ class EnfermedadeRequest extends FormRequest
 			'nombre_enfermedad' => 'string',
 			'descripcion' => 'string',
 			'transmision' => 'string',
+            'id_tipo' => 'required|exists:tipo_enfermedades,id',
         ];
     }
 }

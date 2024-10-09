@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Multimedia extends Model
 {
-    
+    protected $primaryKey='id_multimedia';
     protected $perPage = 20;
 
     /**
@@ -37,5 +37,5 @@ class Multimedia extends Model
     {
         return $this->hasMany(\App\Models\AsignaMultimedia::class, 'id_multimedia', 'id_imagen');
     }
-    
+
 }

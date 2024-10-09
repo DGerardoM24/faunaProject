@@ -1,6 +1,6 @@
 <div class="row padding-1 p-1">
     <div class="col-md-12">
-        
+
         <div class="form-group mb-2 mb20">
             <label for="id_enfermedad" class="form-label">{{ __('Id Enfermedad') }}</label>
             <input type="text" name="id_enfermedad" class="form-control @error('id_enfermedad') is-invalid @enderror" value="{{ old('id_enfermedad', $enfermedade?->id_enfermedad) }}" id="id_enfermedad" placeholder="Id Enfermedad">
@@ -22,11 +22,17 @@
             {!! $errors->first('transmision', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="form-group mb-2 mb20">
-            <label for="id_tipo" class="form-label">{{ __('Id Tipo') }}</label>
-            <input type="text" name="id_tipo" class="form-control @error('id_tipo') is-invalid @enderror" value="{{ old('id_tipo', $enfermedade?->id_tipo) }}" id="id_tipo" placeholder="Id Tipo">
+            <label for="id_tipo" class="form-label">{{ __('Tipo de Enfermedad') }}</label>
+            <select name="id_tipo" id="id_tipo" class="form-control @error('id_tipo') is-invalid @enderror">
+                <option value="">Seleccione el tipo de enfermedad</option>
+                @foreach($tipos_enfermedades as $tipo)
+                    <option value="{{ $tipo->id_tipo }}" {{ old('id_tipo', $enfermedade?->id_tipo) == $tipo->id_tipo ? 'selected' : '' }}>
+                        {{ $tipo->desc_tipo }}
+                    </option>
+                @endforeach
+            </select>
             {!! $errors->first('id_tipo', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
-
     </div>
     <div class="col-md-12 mt20 mt-2">
         <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
