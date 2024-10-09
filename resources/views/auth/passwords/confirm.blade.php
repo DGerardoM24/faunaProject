@@ -2,11 +2,38 @@
 
 @section('content')
 
-    <div class="container">
+    <!-- Estilos adicionales para fondo y cuadro negro transparente -->
+    <style>
+        /* Imagen de fondo */
+        body {
+            background-image: url('/images/liebre.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            margin: 0;
+        }
+
+        /* Cuadro negro transparente */
+        .form-container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 3.5rem;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 100%;
+            margin: 0 auto;
+        }
+    </style>
+
+    <!-- Cuadro negro transparente -->
+    <div class="form-container">
         <h1 class="text-center text-2xl font-bold" style="color: #f5393b;">Confirmar Contraseña</h1>
 
         <div class="card-body">
-            <p class="text-center">{{ __('Por favor, confirma tu contraseña antes de continuar.') }}</p>
+            <p class="text-center" style="color: #fff;">{{ __('Por favor, confirma tu contraseña antes de continuar.') }}</p>
 
             <form method="POST" action="{{ route('password.confirm') }}">
                 @csrf

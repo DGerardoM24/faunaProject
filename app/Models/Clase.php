@@ -18,7 +18,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Clase extends Model
 {
-    
+    protected $primaryKey='id_clase';
+
     protected $perPage = 20;
 
     /**
@@ -36,5 +37,5 @@ class Clase extends Model
     {
         return $this->hasMany(\App\Models\Especy::class, 'id_clase', 'id_clase');
     }
-    
+
 }

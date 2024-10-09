@@ -48,7 +48,7 @@ class ClaseController extends Controller
      */
     public function show($id): View
     {
-        $clase = Clase::find($id);
+        $clase = Clase::where('id_clase',$id)->first();
 
         return view('clase.show', compact('clase'));
     }
@@ -58,7 +58,8 @@ class ClaseController extends Controller
      */
     public function edit($id): View
     {
-        $clase = Clase::find($id);
+
+        $clase = Clase::where('id_clase',$id)->first();
 
         return view('clase.edit', compact('clase'));
     }
@@ -76,7 +77,7 @@ class ClaseController extends Controller
 
     public function destroy($id): RedirectResponse
     {
-        Clase::find($id)->delete();
+        $clase = Clase::where('id_clase',$id)->delete();
 
         return Redirect::route('clases.index')
             ->with('success', 'Clase deleted successfully');

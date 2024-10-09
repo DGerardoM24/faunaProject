@@ -48,7 +48,7 @@ class OrdeneController extends Controller
      */
     public function show($id): View
     {
-        $ordene = Ordene::find($id);
+        $ordene = Ordene::where('id_orden',$id)->first();
 
         return view('ordene.show', compact('ordene'));
     }
@@ -58,7 +58,7 @@ class OrdeneController extends Controller
      */
     public function edit($id): View
     {
-        $ordene = Ordene::find($id);
+        $ordene = Ordene::where('id_orden',$id)->first();
 
         return view('ordene.edit', compact('ordene'));
     }
@@ -76,7 +76,7 @@ class OrdeneController extends Controller
 
     public function destroy($id): RedirectResponse
     {
-        Ordene::find($id)->delete();
+        Ordene::where('id_orden',$id)->delete();
 
         return Redirect::route('ordenes.index')
             ->with('success', 'Ordene deleted successfully');

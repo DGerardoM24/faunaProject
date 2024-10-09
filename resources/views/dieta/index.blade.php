@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="container-fluid">
+    <div class="container-fluid" style="margin-top: 50px;">
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
@@ -16,11 +16,12 @@
                                 {{ __('Dietas') }}
                             </span>
 
-                             <div class="float-right">
-                                <a href="{{ route('dietas.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
+                            <div class="float-right">
+                                <a href="{{ route('dietas.create') }}" class="btn btn-primary btn-sm float-right"
+                                    data-placement="left">
+                                    {{ __('Create New') }}
                                 </a>
-                              </div>
+                            </div>
                         </div>
                     </div>
                     @if ($message = Session::get('success'))
@@ -35,9 +36,9 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
-									<th >Id Dieta</th>
-									<th >Desc Dieta</th>
+
+
+                                        <th>Desc Dieta</th>
 
                                         <th></th>
                                     </tr>
@@ -45,18 +46,25 @@
                                 <tbody>
                                     @foreach ($dietas as $dieta)
                                         <tr>
-                                            <td>{{ ++$i }}</td>
-                                            
-										<td >{{ $dieta->id_dieta }}</td>
-										<td >{{ $dieta->desc_dieta }}</td>
+
+
+                                            <td>{{ $dieta->id_dieta }}</td>
+                                            <td>{{ $dieta->desc_dieta }}</td>
 
                                             <td>
-                                                <form action="{{ route('dietas.destroy', $dieta->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('dietas.show', $dieta->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('dietas.edit', $dieta->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                <form action="{{ route('dietas.destroy', $dieta->id_dieta) }}"
+                                                    method="POST">
+                                                    <a class="btn btn-sm btn-primary "
+                                                        href="{{ route('dietas.show', $dieta->id_dieta) }}"><i
+                                                            class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
+                                                    <a class="btn btn-sm btn-success"
+                                                        href="{{ route('dietas.edit', $dieta->id_dieta) }}"><i
+                                                            class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"
+                                                        onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;"><i
+                                                            class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
                                                 </form>
                                             </td>
                                         </tr>

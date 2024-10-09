@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class EstadosConservacion extends Model
 {
-    
+    protected $primaryKey='id_estado_conservacion';
     protected $perPage = 20;
 
     /**
@@ -36,5 +36,5 @@ class EstadosConservacion extends Model
     {
         return $this->hasMany(\App\Models\Especy::class, 'id_estado_conservacion', 'id_estado_conservacion');
     }
-    
+
 }

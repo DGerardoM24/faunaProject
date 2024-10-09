@@ -18,7 +18,7 @@
     <header class="flex justify-between items-center py-4">
         <div class="flex items-center">
             <!-- Logo -->
-            <img src="/images/Logo.png" alt="Sari">
+            <img src="/images/Logo.png" alt="Sari" style="width: 50px">
             <!-- Espacio entre el logo y los enlaces -->
             <div class="ml-6">
                 <!-- Título o cualquier otro contenido que quieras agregar junto al logo -->
@@ -30,7 +30,7 @@
         @if (Route::has('login'))
         <div class="flex items-center space-x-4">
             @auth
-                <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-100 underline">Dashboard</a>
+                <a href="{{ url('/home') }}" class="ml-4 text-sm font-bold dark:text-gray-300 underline" style="color: #8a2036"">Panel de Inicio</a>
             @else
                 <a href="{{ route('login') }}" class="text-sm font-bold dark:text-gray-100 underline" style="color: #8a2036">Iniciar Sesión</a>
 

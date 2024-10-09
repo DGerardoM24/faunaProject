@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Dieta extends Model
 {
-    
+    protected $primaryKey='id_dieta';
     protected $perPage = 20;
 
     /**
@@ -36,5 +36,5 @@ class Dieta extends Model
     {
         return $this->hasMany(\App\Models\Especy::class, 'id_dieta', 'id_dieta');
     }
-    
+
 }

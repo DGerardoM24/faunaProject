@@ -18,7 +18,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Grupo extends Model
 {
-    
+    protected $primaryKey = 'id_grupo'; // Especifica que la clave primaria es 'id_grupo'
+
     protected $perPage = 20;
 
     /**
@@ -36,5 +37,5 @@ class Grupo extends Model
     {
         return $this->hasMany(\App\Models\Especy::class, 'id_grupo', 'id_grupo');
     }
-    
+
 }

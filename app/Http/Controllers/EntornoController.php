@@ -48,7 +48,7 @@ class EntornoController extends Controller
      */
     public function show($id): View
     {
-        $entorno = Entorno::find($id);
+        $entorno = Entorno::where('id_entorno',$id)->first();
 
         return view('entorno.show', compact('entorno'));
     }
@@ -58,7 +58,7 @@ class EntornoController extends Controller
      */
     public function edit($id): View
     {
-        $entorno = Entorno::find($id);
+        $entorno = Entorno::where('id_entorno',$id)->first();
 
         return view('entorno.edit', compact('entorno'));
     }
@@ -76,7 +76,7 @@ class EntornoController extends Controller
 
     public function destroy($id): RedirectResponse
     {
-        Entorno::find($id)->delete();
+        Entorno::where('id_entorno',$id)->delete();
 
         return Redirect::route('entornos.index')
             ->with('success', 'Entorno deleted successfully');

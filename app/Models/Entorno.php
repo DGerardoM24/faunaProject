@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Entorno extends Model
 {
-    
+    protected $primaryKey='id_entorno';
     protected $perPage = 20;
 
     /**
@@ -36,5 +36,5 @@ class Entorno extends Model
     {
         return $this->hasMany(\App\Models\Especy::class, 'id_entorno', 'id_entorno');
     }
-    
+
 }

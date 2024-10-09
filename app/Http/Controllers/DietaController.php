@@ -48,7 +48,7 @@ class DietaController extends Controller
      */
     public function show($id): View
     {
-        $dieta = Dieta::find($id);
+        $dieta = Dieta::where('id_dieta',$id)->first();
 
         return view('dieta.show', compact('dieta'));
     }
@@ -58,7 +58,7 @@ class DietaController extends Controller
      */
     public function edit($id): View
     {
-        $dieta = Dieta::find($id);
+        $dieta = Dieta::where('id_dieta',$id)->first();
 
         return view('dieta.edit', compact('dieta'));
     }
@@ -76,7 +76,7 @@ class DietaController extends Controller
 
     public function destroy($id): RedirectResponse
     {
-        Dieta::find($id)->delete();
+        Dieta::where('id_dieta',$id)->delete();
 
         return Redirect::route('dietas.index')
             ->with('success', 'Dieta deleted successfully');

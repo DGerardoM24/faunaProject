@@ -48,7 +48,7 @@ class EstadosConservacionController extends Controller
      */
     public function show($id): View
     {
-        $estadosConservacion = EstadosConservacion::find($id);
+        $estadosConservacion = EstadosConservacion::where('id_estado_conservacion',$id)->first();
 
         return view('estados-conservacion.show', compact('estadosConservacion'));
     }
@@ -58,7 +58,7 @@ class EstadosConservacionController extends Controller
      */
     public function edit($id): View
     {
-        $estadosConservacion = EstadosConservacion::find($id);
+        $estadosConservacion = EstadosConservacion::where('id_estado_conservacion',$id)->first();
 
         return view('estados-conservacion.edit', compact('estadosConservacion'));
     }
@@ -76,7 +76,7 @@ class EstadosConservacionController extends Controller
 
     public function destroy($id): RedirectResponse
     {
-        EstadosConservacion::find($id)->delete();
+        EstadosConservacion::where('id_estado_conservacion',$id)->delete();
 
         return Redirect::route('estados-conservacions.index')
             ->with('success', 'EstadosConservacion deleted successfully');

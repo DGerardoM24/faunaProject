@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Ordene extends Model
 {
-    
+    protected $primaryKey='id_orden';
     protected $perPage = 20;
 
     /**
@@ -36,5 +36,5 @@ class Ordene extends Model
     {
         return $this->hasMany(\App\Models\Especy::class, 'id_orden', 'id_orden');
     }
-    
+
 }
