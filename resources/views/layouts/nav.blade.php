@@ -2,6 +2,8 @@
     <div class="card">
         <div class="card-header">{{ __('Menu') }}</div>
         <div class="list-group list-group-flush">
+            <a href="/banderas" class="list-group-item list-group-item-action">Banderas</a>
+            <a href="/tipo-enfermedades" class="list-group-item list-group-item-action">Tipos de Enfermedades</a>
             <a href="/clases" class="list-group-item list-group-item-action">Clases</a>
             <a href="/ordenes" class="list-group-item list-group-item-action">Ordenes</a>
             <a href="/estados-conservacions" class="list-group-item list-group-item-action">Estados de Conservación</a>
@@ -12,6 +14,7 @@
             <a href="/multimedia" class="list-group-item list-group-item-action">Multimedia</a>
             <a href="/enfermedades" class="list-group-item list-group-item-action">Enfermedades</a>
             <a href="/grupos" class="list-group-item list-group-item-action">Grupos</a>
+            <a href="/especies" class="list-group-item list-group-item-action">Especies</a>
         </div>
     </div>
 </div>

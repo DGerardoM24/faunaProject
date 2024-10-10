@@ -41,7 +41,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Especy extends Model
 {
-    
+    protected $primaryKey = "id_especie";
     protected $perPage = 20;
 
     /**
@@ -59,7 +59,7 @@ class Especy extends Model
     {
         return $this->belongsTo(\App\Models\Bandera::class, 'id_bandera', 'id_bandera');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -67,7 +67,7 @@ class Especy extends Model
     {
         return $this->belongsTo(\App\Models\Clase::class, 'id_clase', 'id_clase');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -75,7 +75,7 @@ class Especy extends Model
     {
         return $this->belongsTo(\App\Models\Dieta::class, 'id_dieta', 'id_dieta');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -83,7 +83,7 @@ class Especy extends Model
     {
         return $this->belongsTo(\App\Models\Entorno::class, 'id_entorno', 'id_entorno');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -91,7 +91,7 @@ class Especy extends Model
     {
         return $this->belongsTo(\App\Models\EstadosConservacion::class, 'id_estado_conservacion', 'id_estado_conservacion');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -99,7 +99,7 @@ class Especy extends Model
     {
         return $this->belongsTo(\App\Models\Familia::class, 'id_familia', 'id_familia');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -107,7 +107,7 @@ class Especy extends Model
     {
         return $this->belongsTo(\App\Models\Grupo::class, 'id_grupo', 'id_grupo');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -115,7 +115,7 @@ class Especy extends Model
     {
         return $this->belongsTo(\App\Models\Ordene::class, 'id_orden', 'id_orden');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -123,7 +123,7 @@ class Especy extends Model
     {
         return $this->hasMany(\App\Models\AsignaEnfermedade::class, 'id_especie', 'id_especie');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -131,7 +131,7 @@ class Especy extends Model
     {
         return $this->hasMany(\App\Models\AsignaMultimedia::class, 'id_especie', 'id_especie');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -139,7 +139,7 @@ class Especy extends Model
     {
         return $this->hasMany(\App\Models\AsignaRuta::class, 'id_especie', 'id_especie');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -147,5 +147,5 @@ class Especy extends Model
     {
         return $this->hasMany(\App\Models\Publicacione::class, 'id_especie', 'id_especie');
     }
-    
+
 }

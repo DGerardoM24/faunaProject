@@ -22,7 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Enfermedade extends Model
 {
-    protected $primaryKey='id_enfermedad';
+    protected $primaryKey = 'id_enfermedad';
     protected $perPage = 20;
 
     /**
@@ -38,8 +38,9 @@ class Enfermedade extends Model
      */
     public function tipoEnfermedade()
     {
-        return $this->belongsTo(TipoEnfermedade::class, 'id_tipo');
+        return $this->belongsTo(TipoEnfermedade::class, 'id_tipo', 'id_tipo');
     }
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -48,5 +49,4 @@ class Enfermedade extends Model
     {
         return $this->hasMany(\App\Models\AsignaEnfermedade::class, 'id_enfermedad', 'id_enfermedad');
     }
-
 }

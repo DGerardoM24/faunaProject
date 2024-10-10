@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Bandera extends Model
 {
-    
+    protected $primaryKey="id_bandera";
     protected $perPage = 20;
 
     /**
@@ -37,5 +37,5 @@ class Bandera extends Model
     {
         return $this->hasMany(\App\Models\Especy::class, 'id_bandera', 'id_bandera');
     }
-    
+
 }

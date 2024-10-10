@@ -55,7 +55,7 @@ return new class extends Migration
 
             $table->foreign('id_estado_conservacion')
                 ->references('id_estado_conservacion')
-                ->on('estados_conservacion')
+                ->on('estados_conservacions')
                 ->onUpdate('cascade')
                 ->onDelete('set null');
 

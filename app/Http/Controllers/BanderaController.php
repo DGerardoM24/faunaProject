@@ -48,7 +48,7 @@ class BanderaController extends Controller
      */
     public function show($id): View
     {
-        $bandera = Bandera::find($id);
+        $bandera = Bandera::where('id_bandera',$id)->first();
 
         return view('bandera.show', compact('bandera'));
     }
@@ -58,7 +58,7 @@ class BanderaController extends Controller
      */
     public function edit($id): View
     {
-        $bandera = Bandera::find($id);
+        $bandera = Bandera::where('id_bandera',$id)->first();
 
         return view('bandera.edit', compact('bandera'));
     }
@@ -76,7 +76,7 @@ class BanderaController extends Controller
 
     public function destroy($id): RedirectResponse
     {
-        Bandera::find($id)->delete();
+        Bandera::where('id_bandera',$id)->delete();
 
         return Redirect::route('banderas.index')
             ->with('success', 'Bandera deleted successfully');

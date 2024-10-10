@@ -40,12 +40,13 @@ class EnfermedadeController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(EnfermedadeRequest $request): RedirectResponse
-    {
-        Enfermedade::create($request->validated());
+{
+    // Guardar la enfermedad con el id_tipo seleccionado
+    Enfermedade::create($request->validated());
 
-        return Redirect::route('enfermedades.index')
-            ->with('success', 'Enfermedade created successfully.');
-    }
+    return Redirect::route('enfermedades.index')
+        ->with('success', 'Enfermedad creada correctamente.');
+}
 
     /**
      * Display the specified resource.
@@ -71,12 +72,13 @@ class EnfermedadeController extends Controller
      * Update the specified resource in storage.
      */
     public function update(EnfermedadeRequest $request, Enfermedade $enfermedade): RedirectResponse
-    {
-        $enfermedade->update($request->validated());
+{
+    // Actualizar la enfermedad con el nuevo id_tipo seleccionado
+    $enfermedade->update($request->validated());
 
-        return Redirect::route('enfermedades.index')
-            ->with('success', 'Enfermedade updated successfully');
-    }
+    return Redirect::route('enfermedades.index')
+        ->with('success', 'Enfermedad actualizada correctamente.');
+}
 
     public function destroy($id): RedirectResponse
     {

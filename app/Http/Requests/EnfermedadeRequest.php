@@ -19,14 +19,13 @@ class EnfermedadeRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
+    public function rules()
     {
         return [
-			'id_enfermedad' => 'required',
-			'nombre_enfermedad' => 'string',
-			'descripcion' => 'string',
-			'transmision' => 'string',
-            'id_tipo' => 'required|exists:tipo_enfermedades,id',
+            'nombre_enfermedad' => 'required|string|max:255',
+            'descripcion' => 'required|string',
+            'transmision' => 'required|string',
+            'id_tipo' => 'required|exists:tipo_enfermedades,id_tipo', // Asegura que el id_tipo exista en la tabla de tipo_enfermedades
         ];
     }
 }

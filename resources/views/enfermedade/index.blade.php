@@ -37,23 +37,23 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Nombre Enfermedad</th>
-                                        <th>Tipo de Enfermedad</th>
                                         <th>Descripción</th>
                                         <th>Transmisión</th>
-
+                                        <th>Tipo de Enfermedad</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($enfermedades as $enfermedade)
                                         <tr>
-                                            <td>{{ ++$i }}</td>
 
                                             <td>{{ $enfermedade->id_enfermedad }}</td>
                                             <td>{{ $enfermedade->nombre_enfermedad }}</td>
-                                            <td>{{ $enfermedade->tipoEnfermedade->nombre ?? 'Sin Tipo' }}</td>
                                             <td>{{ $enfermedade->descripcion }}</td>
                                             <td>{{ $enfermedade->transmision }}</td>
+                                            <td>{{ $enfermedade->tipoEnfermedade->desc_tipo ?? 'Sin Tipo' }}</td>
+
+
 
                                             <td>
                                                 <form

@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class TipoEnfermedade extends Model
 {
-
+    protected $primaryKey="id_tipo";
     protected $perPage = 20;
 
     /**

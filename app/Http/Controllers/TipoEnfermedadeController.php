@@ -48,7 +48,7 @@ class TipoEnfermedadeController extends Controller
      */
     public function show($id): View
     {
-        $tipoEnfermedade = TipoEnfermedade::find($id);
+        $tipoEnfermedade = TipoEnfermedade::where('id_tipo',$id)->first();
 
         return view('tipo-enfermedade.show', compact('tipoEnfermedade'));
     }
@@ -58,7 +58,7 @@ class TipoEnfermedadeController extends Controller
      */
     public function edit($id): View
     {
-        $tipoEnfermedade = TipoEnfermedade::find($id);
+        $tipoEnfermedade = TipoEnfermedade::where('id_tipo',$id)->first();
 
         return view('tipo-enfermedade.edit', compact('tipoEnfermedade'));
     }
@@ -76,7 +76,7 @@ class TipoEnfermedadeController extends Controller
 
     public function destroy($id): RedirectResponse
     {
-        TipoEnfermedade::find($id)->delete();
+        TipoEnfermedade::where('id_tipo',$id)->delete();
 
         return Redirect::route('tipo-enfermedades.index')
             ->with('success', 'TipoEnfermedade deleted successfully');
