@@ -22,11 +22,11 @@ class EspecyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            
+
             'nombre_comun' => 'required|string|max:255', // Se puede hacer requerido dependiendo de tu lógica
             'nombre_cientifico' => 'required|string|max:255', // Se puede hacer requerido dependiendo de tu lógica
             'descripcion' => 'nullable|string', // Puedes hacer esto opcional
-            'habitat' => 'nullable|string', // Puedes hacer esto opcional
+            'habitad' => 'nullable|string|max:250', // Puedes hacer esto opcional
             'id_dieta' => 'required|exists:dietas,id_dieta',
             'id_familia' => 'required|exists:familias,id_familia',
             'id_orden' => 'required|exists:ordenes,id_orden',

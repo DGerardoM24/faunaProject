@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <section class="content container-fluid">
+    <section class="content container-fluid" style="margin-top: 50px;">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -19,7 +19,7 @@
                     </div>
 
                     <div class="card-body bg-white">
-                        
+
                                 <div class="form-group mb-2 mb20">
                                     <strong>Id Publicacion:</strong>
                                     {{ $publicacione->id_publicacion }}

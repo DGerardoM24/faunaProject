@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="container-fluid">
+    <div class="container-fluid" style="margin-top: 50px;">
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
@@ -35,8 +35,8 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
-									<th >Id Publicacion</th>
+
+
 									<th >Titulo</th>
 									<th >Id Especie</th>
 									<th >Fecha P</th>
@@ -47,17 +47,16 @@
                                 <tbody>
                                     @foreach ($publicaciones as $publicacione)
                                         <tr>
-                                            <td>{{ ++$i }}</td>
-                                            
+
 										<td >{{ $publicacione->id_publicacion }}</td>
 										<td >{{ $publicacione->titulo }}</td>
 										<td >{{ $publicacione->id_especie }}</td>
 										<td >{{ $publicacione->fecha_p }}</td>
 
                                             <td>
-                                                <form action="{{ route('publicaciones.destroy', $publicacione->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('publicaciones.show', $publicacione->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('publicaciones.edit', $publicacione->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                <form action="{{ route('publicaciones.destroy', $publicacione->id_publicacion) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('publicaciones.show', $publicacione->id_publicacion) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('publicaciones.edit', $publicacione->id_publicacion) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>

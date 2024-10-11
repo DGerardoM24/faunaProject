@@ -69,10 +69,20 @@ class EspecyController extends Controller
      */
     public function show($id): View
     {
-        $especy = Especy::where('id_especie', $id)->first();
+        $especy = Especy::with([
+            'dieta',
+            'familia',
+            'ordene',
+            'clase',
+            'entorno',
+            'bandera',
+            'estadosConservacion',
+            'grupo'
+        ])->where('id_especie', $id)->first();
 
         return view('especy.show', compact('especy'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -102,16 +112,14 @@ class EspecyController extends Controller
     {
         // Actualizar la especie usando los datos validados
         $especy->update($request->validated());
-
         // Redirigir o mostrar mensaje de éxito
-        return redirect()->route('especy.index')->with('success', 'Especie creada con éxito');
+        return redirect()->route('especies.index')->with('success', 'Especie creada con éxito');
     }
 
     public function destroy($id): RedirectResponse
     {
         Especy::where('id_especie', $id)->delete();
-
-        return redirect()->route('especy.index')
+        return redirect()->route('especies.index')
             ->with('success', 'Especie eliminada con éxito');
     }
 }

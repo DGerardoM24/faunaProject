@@ -38,7 +38,7 @@
 										<th>Nombre Común</th>
 										<th>Nombre Científico</th>
 										<th>Descripción</th>
-										<th>Hábitat</th>
+										<th>Hábitad</th>
 										<th>Dieta</th>
 										<th>Familia</th>
 										<th>Orden</th>
@@ -58,7 +58,7 @@
 											<td>{{ $especy->nombre_comun }}</td>
 											<td>{{ $especy->nombre_cientifico }}</td>
 											<td>{{ $especy->descripcion }}</td>
-											<td>{{ $especy->habitat }}</td>
+											<td>{{ $especy->habitad }}</td>
 											<td>{{ $especy->dieta->desc_dieta?? 'Sin Dieta' }}</td>
 											<td>{{ $especy->familia->desc_familia ?? 'Sin Familia' }}</td>
 											<td>{{ $especy->ordene->desc_orden ?? 'Sin Orden' }}</td>
