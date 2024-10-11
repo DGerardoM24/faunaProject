@@ -17,7 +17,7 @@ return new class extends Migration
             $table->bigIncrements('id_especie'); // Llave primaria auto incrementable
             $table->string('nombre_comun', 250)->nullable();
             $table->string('nombre_cientifico', 250)->nullable();
-            $table->string('descripcion', 250)->nullable();
+            $table->string('descripcion', 500)->nullable();
             $table->string('habitad', 250)->nullable();
             $table->bigInteger('id_dieta')->unsigned()->nullable();
             $table->bigInteger('id_familia')->unsigned()->nullable();

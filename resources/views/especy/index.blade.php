@@ -35,48 +35,47 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-									<th >Nombre Comun</th>
-									<th >Nombre Cientifico</th>
-									<th >Descripcion</th>
-									<th >Habitad</th>
-									<th >Id Dieta</th>
-									<th >Id Familia</th>
-									<th >Id Orden</th>
-									<th >Id Clase</th>
-									<th >Id Entorno</th>
-									<th >Id Bandera</th>
-									<th >Tamanio</th>
-									<th >Id Estado Conservacion</th>
-									<th >Id Grupo</th>
-
-                                        <th></th>
+										<th>Nombre Común</th>
+										<th>Nombre Científico</th>
+										<th>Descripción</th>
+										<th>Hábitat</th>
+										<th>Dieta</th>
+										<th>Familia</th>
+										<th>Orden</th>
+										<th>Clase</th>
+										<th>Entorno</th>
+										<th>Bandera</th>
+										<th>Tamaño</th>
+										<th>Estado de Conservación</th>
+										<th>Grupo</th>
+                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($especies as $especy)
                                         <tr>
-										<td >{{ $especy->id_especie }}</td>
-										<td >{{ $especy->nombre_comun }}</td>
-										<td >{{ $especy->nombre_cientifico }}</td>
-										<td >{{ $especy->descripcion }}</td>
-										<td >{{ $especy->habitad }}</td>
-										<td >{{ $especy->id_dieta }}</td>
-										<td >{{ $especy->id_familia }}</td>
-										<td >{{ $especy->id_orden }}</td>
-										<td >{{ $especy->id_clase }}</td>
-										<td >{{ $especy->id_entorno }}</td>
-										<td >{{ $especy->id_bandera }}</td>
-										<td >{{ $especy->tamanio }}</td>
-										<td >{{ $especy->id_estado_conservacion }}</td>
-										<td >{{ $especy->id_grupo }}</td>
+											<td>{{ $especy->id_especie }}</td>
+											<td>{{ $especy->nombre_comun }}</td>
+											<td>{{ $especy->nombre_cientifico }}</td>
+											<td>{{ $especy->descripcion }}</td>
+											<td>{{ $especy->habitat }}</td>
+											<td>{{ $especy->dieta->desc_dieta?? 'Sin Dieta' }}</td>
+											<td>{{ $especy->familia->desc_familia ?? 'Sin Familia' }}</td>
+											<td>{{ $especy->ordene->desc_orden ?? 'Sin Orden' }}</td>
+											<td>{{ $especy->clase->desc_clase ?? 'Sin Clase' }}</td>
+											<td>{{ $especy->entorno->desc_entorno ?? 'Sin Entorno' }}</td>
+											<td>{{ $especy->bandera->nom_bandera ?? 'Sin Bandera' }}</td>
+											<td>{{ $especy->tamanio }}</td>
+											<td>{{ $especy->estadosConservacion->desc_estado ?? 'Sin Estado' }}</td>
+											<td>{{ $especy->grupo->desc_grupo ?? 'Sin Grupo' }}</td>
 
                                             <td>
                                                 <form action="{{ route('especies.destroy', $especy->id_especie) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('especies.show', $especy->id_especie) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
+                                                    <a class="btn btn-sm btn-primary" href="{{ route('especies.show', $especy->id_especie) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
                                                     <a class="btn btn-sm btn-success" href="{{ route('especies.edit', $especy->id_especie) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('¿Estás seguro de eliminar esta especie?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
                                                 </form>
                                             </td>
                                         </tr>

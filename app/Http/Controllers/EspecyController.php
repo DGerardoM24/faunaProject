@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\EspecyRequest;
 use App\Models\Bandera;
 use App\Models\Clase;
+use App\Models\Dieta;
 use App\Models\Entorno;
 use App\Models\EstadosConservacion;
 use App\Models\Familia;
@@ -21,22 +22,24 @@ class EspecyController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request): View
+    public function index()
     {
-        $especies = Especy::paginate();
+        // Carga las especies con las relaciones necesarias
+        $especies = Especy::with(['dieta', 'familia', 'ordene', 'clase', 'entorno', 'bandera', 'estadosConservacion', 'grupo'])->paginate(10);
 
-        return view('especy.index', compact('especies'))
-            ->with('i', ($request->input('page', 1) - 1) * $especies->perPage());
+        return view('especy.index', compact('especies'));
     }
+
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        // Obtener las colecciones para los selectores
+        $especy = new Especy();
+        $dietas = Dieta::all();
         $banderas = Bandera::all(); // Modelo Bandera
-        $estados_conservacion = EstadosConservacion::all(); // Modelo EstadoConservacion
+        $estados_conservacions = EstadosConservacion::all(); // Modelo EstadoConservacion
         $clases = Clase::all(); // Modelo Clase
         $entornos = Entorno::all(); // Modelo Entorno
         $grupos = Grupo::all(); // Modelo Grupo
@@ -44,43 +47,20 @@ class EspecyController extends Controller
         $familias = Familia::all(); // Modelo Familia
 
         // Pasar las colecciones a la vista
-        return view('especies.create', compact('banderas', 'estados_conservacion', 'clases', 'entornos', 'grupos', 'ordenes', 'familias'));
+        return view('especy.create', compact('especy', 'dietas', 'banderas', 'estados_conservacions', 'clases', 'entornos', 'grupos', 'ordenes', 'familias'));
     }
 
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(EspecyRequest $request): RedirectResponse
     {
-        // Validar los datos
-        $request->validate([
-            'nombre' => 'required|string|max:255',
-            'id_bandera' => 'required|exists:banderas,id_bandera',
-            'id_estado_conservacion' => 'required|exists:estados_conservacion,id_estado_conservacion',
-            'id_clase' => 'required|exists:clases,id_clase',
-            'id_entorno' => 'required|exists:entornos,id_entorno',
-            'id_grupo' => 'required|exists:grupos,id_grupo',
-            'id_orden' => 'required|exists:ordenes,id_orden',
-            'id_familia' => 'required|exists:familias,id_familia',
-            // Otros campos adicionales...
-        ]);
-
-        // Crear una nueva especie
-        Especy::create([
-            'nombre' => $request->nombre,
-            'id_bandera' => $request->id_bandera,
-            'id_estado_conservacion' => $request->id_estado_conservacion,
-            'id_clase' => $request->id_clase,
-            'id_entorno' => $request->id_entorno,
-            'id_grupo' => $request->id_grupo,
-            'id_orden' => $request->id_orden,
-            'id_familia' => $request->id_familia,
-            // Otros campos adicionales...
-        ]);
+        // Crear una nueva especie usando los datos validados
+        Especy::create($request->validated());
 
         // Redirigir o mostrar mensaje de éxito
-        return redirect()->route('especies.index')->with('success', 'Especie creada con éxito');
+        return redirect()->route('especy.index')->with('success', 'Especie creada con éxito');
     }
 
 
@@ -97,11 +77,13 @@ class EspecyController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Especy $especy)
+    public function edit($id)
     {
-        // Obtener las colecciones para los selectores
+        $especy = Especy::where('id_especie', $id)->first();
+        // Encuentra el registro que necesitas
+        $dietas = Dieta::all(); // Pasa las dietas u otros datos necesarios también
         $banderas = Bandera::all();
-        $estados_conservacion = EstadosConservacion::all();
+        $estados_conservacions = EstadosConservacion::all();
         $clases = Clase::all();
         $entornos = Entorno::all();
         $grupos = Grupo::all();
@@ -109,51 +91,27 @@ class EspecyController extends Controller
         $familias = Familia::all();
 
         // Pasar las colecciones y la especie a la vista
-        return view('especies.edit', compact('especy', 'banderas', 'estados_conservacion', 'clases', 'entornos', 'grupos', 'ordenes', 'familias'));
+        return view('especy.edit', compact('dietas', 'especy', 'banderas', 'estados_conservacions', 'clases', 'entornos', 'grupos', 'ordenes', 'familias'));
     }
 
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Especy $especy)
-{
-    // Validar los datos
-    $request->validate([
-        'nombre' => 'required|string|max:255',
-        'id_bandera' => 'required|exists:banderas,id_bandera',
-        'id_estado_conservacion' => 'required|exists:estados_conservacion,id_estado_conservacion',
-        'id_clase' => 'required|exists:clases,id_clase',
-        'id_entorno' => 'required|exists:entornos,id_entorno',
-        'id_grupo' => 'required|exists:grupos,id_grupo',
-        'id_orden' => 'required|exists:ordenes,id_orden',
-        'id_familia' => 'required|exists:familias,id_familia',
-        // Otros campos adicionales...
-    ]);
+    public function update(EspecyRequest $request, Especy $especy): RedirectResponse
+    {
+        // Actualizar la especie usando los datos validados
+        $especy->update($request->validated());
 
-    // Actualizar la especie
-    $especy->update([
-        'nombre' => $request->nombre,
-        'id_bandera' => $request->id_bandera,
-        'id_estado_conservacion' => $request->id_estado_conservacion,
-        'id_clase' => $request->id_clase,
-        'id_entorno' => $request->id_entorno,
-        'id_grupo' => $request->id_grupo,
-        'id_orden' => $request->id_orden,
-        'id_familia' => $request->id_familia,
-        // Otros campos adicionales...
-    ]);
-
-    // Redirigir o mostrar mensaje de éxito
-    return redirect()->route('especies.index')->with('success', 'Especie actualizada con éxito');
-}
-
+        // Redirigir o mostrar mensaje de éxito
+        return redirect()->route('especy.index')->with('success', 'Especie creada con éxito');
+    }
 
     public function destroy($id): RedirectResponse
     {
         Especy::where('id_especie', $id)->delete();
 
-        return Redirect::route('especies.index')
-            ->with('success', 'Especy deleted successfully');
+        return redirect()->route('especy.index')
+            ->with('success', 'Especie eliminada con éxito');
     }
 }

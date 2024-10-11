@@ -1,4 +1,4 @@
-<div class="row padding-1 p-1">
+<div class="row padding-1 p-1" style="margin-top: 50px;">
     <div class="col-md-12">
 
         <div class="form-group mb-2 mb20">
@@ -96,7 +96,7 @@
                 <option value="">Seleccione la bandera</option>
                 @foreach($banderas as $bandera)
                     <option value="{{ $bandera->id_bandera }}" {{ old('id_bandera', $especy?->id_bandera) == $bandera->id_bandera ? 'selected' : '' }}>
-                        {{ $bandera->desc_bandera }}
+                        {{ $bandera->nom_bandera }}
                     </option>
                 @endforeach
             </select>
@@ -112,9 +112,9 @@
             <label for="id_estado_conservacion" class="form-label">{{ __('Estado de Conservación') }}</label>
             <select name="id_estado_conservacion" id="id_estado_conservacion" class="form-control @error('id_estado_conservacion') is-invalid @enderror">
                 <option value="">Seleccione el estado de conservación</option>
-                @foreach($estados_conservacion as $estado)
+                @foreach($estados_conservacions as $estado)
                     <option value="{{ $estado->id_estado_conservacion }}" {{ old('id_estado_conservacion', $especy?->id_estado_conservacion) == $estado->id_estado_conservacion ? 'selected' : '' }}>
-                        {{ $estado->desc_estado_conservacion }}
+                        {{ $estado->desc_estado }}
                     </option>
                 @endforeach
             </select>

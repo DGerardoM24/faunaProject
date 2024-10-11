@@ -57,18 +57,18 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a href="{{ url('/home') }}" class="text-sm font-bold dark:text-gray-100 underline m-4" style="color: #8a2036">Panel</a>
+                            <a href="{{ url('/home') }}" class="text-sm font-bold dark:text-gray-100 underline m-3" style="color: #8a2036">Panel</a>
                         </li>
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a href="{{ route('login') }}" class="text-sm font-bold dark:text-gray-100 underline" style="color: #8a2036">Iniciar Sesión</a>
+                                    <a href="{{ route('login') }}" class="text-sm font-bold dark:text-gray-100 underline m-3" style="color: #8a2036">Iniciar Sesión</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a href="{{ route('register') }}" class="ml-4 text-sm font-bold dark:text-gray-300 underline" style="color: #8a2036">Registrarse</a>
+                                    <a href="{{ route('register') }}" class="ml-4 text-sm font-bold dark:text-gray-300 underline m-3" style="color: #8a2036">Registrarse</a>
                                 </li>
                             @endif
                         @else
