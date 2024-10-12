@@ -49,7 +49,7 @@
                                             <td>{{ $item->nombre }}</td>
                                             <td>
                                                 @if($item->multimedia)
-                                                <img src="{{ asset('storage/' . $item->multimedia) }}" alt="{{ $item->nombre }}" width="100" class="img-thumbnail">
+                                                <img src="{{ asset('storage/' . $item->multimedia) }}" alt="{{ $item->multimedia }}" width="200" class="img-thumbnail">
                                                 @else
                                                     <p>No image available</p>
                                                 @endif

@@ -35,8 +35,7 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
-									<th >Id Asigna Enfermedad</th>
+
 									<th >Id Enfermedad</th>
 									<th >Id Especie</th>
 
@@ -46,16 +45,15 @@
                                 <tbody>
                                     @foreach ($asignaEnfermedades as $asignaEnfermedade)
                                         <tr>
-                                            <td>{{ ++$i }}</td>
-                                            
+
 										<td >{{ $asignaEnfermedade->id_asigna_enfermedad }}</td>
 										<td >{{ $asignaEnfermedade->id_enfermedad }}</td>
 										<td >{{ $asignaEnfermedade->id_especie }}</td>
 
                                             <td>
-                                                <form action="{{ route('asigna-enfermedades.destroy', $asignaEnfermedade->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('asigna-enfermedades.show', $asignaEnfermedade->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('asigna-enfermedades.edit', $asignaEnfermedade->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                <form action="{{ route('asigna-enfermedades.destroy', $asignaEnfermedade->id_asigna_enfermedad) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('asigna-enfermedades.show', $asignaEnfermedade->id_asigna_enfermedad) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('asigna-enfermedades.edit', $asignaEnfermedade->id_asigna_enfermedad) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>

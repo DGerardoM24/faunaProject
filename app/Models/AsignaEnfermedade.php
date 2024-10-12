@@ -20,7 +20,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class AsignaEnfermedade extends Model
 {
-    
+    protected $primaryKey='id_asigna_enfermedad';
     protected $perPage = 20;
 
     /**
@@ -38,7 +38,7 @@ class AsignaEnfermedade extends Model
     {
         return $this->belongsTo(\App\Models\Enfermedade::class, 'id_enfermedad', 'id_enfermedad');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -46,5 +46,5 @@ class AsignaEnfermedade extends Model
     {
         return $this->belongsTo(\App\Models\Especy::class, 'id_especie', 'id_especie');
     }
-    
+
 }

@@ -33,6 +33,8 @@
             <!-- <a href="/publicaciones" class="list-group-item list-group-item-action" style="background-color: #b91c1c; color: white; border-bottom: 1px solid #55212e;">Publicaciones</a>-->
             <a href="/asigna-multimedia" class="list-group-item list-group-item-action"
                 style="background-color: #b91c1c; color: white; border-bottom: 1px solid #55212e;">Asignar Imagenes</a>
+            <a href="/asigna-enfermedad" class="list-group-item list-group-item-action"
+                style="background-color: #b91c1c; color: white; border-bottom: 1px solid #55212e;">Asignar Enfermedades</a>
         </div>
     </div>
 </div>

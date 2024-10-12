@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>FaunaTEC</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -22,7 +22,7 @@
             <!-- Espacio entre el logo y los enlaces -->
             <div class="ml-6">
                 <!-- Título o cualquier otro contenido que quieras agregar junto al logo -->
-                <h1 class="text-xl font-bold">Fauna de Valle de Bravo</h1>
+                <h1 class="text-xl font-bold">FaunaTEC</h1>
             </div>
         </div>
 

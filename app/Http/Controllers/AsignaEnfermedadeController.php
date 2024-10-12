@@ -48,7 +48,7 @@ class AsignaEnfermedadeController extends Controller
      */
     public function show($id): View
     {
-        $asignaEnfermedade = AsignaEnfermedade::find($id);
+        $asignaEnfermedade = AsignaEnfermedade::where('id_asigna_enfermedad',$id)->fist();
 
         return view('asigna-enfermedade.show', compact('asignaEnfermedade'));
     }
@@ -58,7 +58,7 @@ class AsignaEnfermedadeController extends Controller
      */
     public function edit($id): View
     {
-        $asignaEnfermedade = AsignaEnfermedade::find($id);
+        $asignaEnfermedade = AsignaEnfermedade::where('id_asigna_enfermedad',$id)->fist();
 
         return view('asigna-enfermedade.edit', compact('asignaEnfermedade'));
     }
@@ -76,7 +76,7 @@ class AsignaEnfermedadeController extends Controller
 
     public function destroy($id): RedirectResponse
     {
-        AsignaEnfermedade::find($id)->delete();
+        AsignaEnfermedade::where('id_asigna_enfermedad',$id)->delete();
 
         return Redirect::route('asigna-enfermedades.index')
             ->with('success', 'AsignaEnfermedade deleted successfully');

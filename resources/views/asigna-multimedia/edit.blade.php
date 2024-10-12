@@ -5,16 +5,15 @@
 @endsection
 
 @section('content')
-    <section class="content container-fluid">
+    <section class="content container-fluid" style="margin-top: 50px;">
         <div class="">
             <div class="col-md-12">
-
                 <div class="card card-default">
                     <div class="card-header">
                         <span class="card-title">{{ __('Update') }} Asigna Multimedia</span>
                     </div>
                     <div class="card-body bg-white">
-                        <form method="POST" action="{{ route('asigna-multimedia.update', $asignaMultimedia->id) }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('asigna-multimedia.update', $asignaMultimedia->id_asigna_multimedia) }}"  role="form" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}
                             @csrf
 

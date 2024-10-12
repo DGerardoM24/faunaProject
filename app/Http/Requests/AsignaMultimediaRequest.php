@@ -22,7 +22,8 @@ class AsignaMultimediaRequest extends FormRequest
     public function rules(): array
     {
         return [
-			'id_asigna_multimedia' => 'required',
+            'id_imagen' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'id_especie' => 'required',
         ];
     }
 }

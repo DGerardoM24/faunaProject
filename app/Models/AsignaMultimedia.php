@@ -20,7 +20,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class AsignaMultimedia extends Model
 {
-    
+    protected $primaryKey='id_asigna_multimedia';
     protected $perPage = 20;
 
     /**
@@ -30,15 +30,14 @@ class AsignaMultimedia extends Model
      */
     protected $fillable = ['id_asigna_multimedia', 'id_imagen', 'id_especie'];
 
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function especy()
+    public function especie()
     {
         return $this->belongsTo(\App\Models\Especy::class, 'id_especie', 'id_especie');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -46,5 +45,5 @@ class AsignaMultimedia extends Model
     {
         return $this->belongsTo(\App\Models\Multimedia::class, 'id_imagen', 'id_multimedia');
     }
-    
+
 }

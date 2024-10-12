@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <section class="content container-fluid">
+    <section class="content container-fluid" style="margin-top: 50px;">
         <div class="row">
             <div class="col-md-12">
 
@@ -14,7 +14,7 @@
                         <span class="card-title">{{ __('Create') }} Asigna Multimedia</span>
                     </div>
                     <div class="card-body bg-white">
-                        <form method="POST" action="{{ route('asigna-multimedia.store') }}"  role="form" enctype="multipart/form-data">
+                        <form action="{{ route('asigna-multimedia.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
 
                             @include('asigna-multimedia.form')
