@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class AsignaRuta extends Model
 {
-
+    protected $primaryKey='id_asigna_rutas';
     protected $perPage = 20;
 
     /**

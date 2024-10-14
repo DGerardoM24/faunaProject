@@ -22,8 +22,9 @@ class AsignaRutaRequest extends FormRequest
     public function rules(): array
     {
         return [
-			'id_asigna_rutas' => 'required',
-			'id_especie' => 'required',
+            // No necesitas validar 'id_asigna_rutas' si es autogenerado
+            'id_ruta' => 'required|exists:rutas,id_ruta',  // Verifica que el id_ruta existe en la tabla 'rutas'
+            'id_especie' => 'required|exists:especies,id_especie',  // Verifica que el id_especie existe en la tabla 'especies'
         ];
     }
 }

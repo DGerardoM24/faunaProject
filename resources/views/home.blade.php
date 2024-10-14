@@ -2,6 +2,5 @@
 
 @section('content')
 
-@extends('layouts.nav')
 
 @endsection

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->bigIncrements('id_asigna_rutas'); // Llave primaria auto incrementable
             $table->bigInteger('id_ruta')->unsigned()->nullable(); // Llave foránea que hace referencia a 'rutas'
             $table->bigInteger('id_especie')->unsigned(); // Llave foránea que hace referencia a 'especies', NOT NULL
+            $table->timestamps();
 
             // Definición de llaves foráneas
             $table->foreign('id_ruta')

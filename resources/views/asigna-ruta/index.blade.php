@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="container-fluid">
+    <div class="container-fluid" style="margin-top: 50px;">
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
@@ -35,27 +35,21 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
-									<th >Id Asigna Rutas</th>
-									<th >Id Ruta</th>
-									<th >Id Especie</th>
-
+                                        <th>Ruta</th>
+                                        <th>Especie</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($asignaRutas as $asignaRuta)
                                         <tr>
-                                            <td>{{ ++$i }}</td>
-                                            
-										<td >{{ $asignaRuta->id_asigna_rutas }}</td>
-										<td >{{ $asignaRuta->id_ruta }}</td>
-										<td >{{ $asignaRuta->id_especie }}</td>
-
+                                            <td>{{ $asignaRuta->id_asigna_rutas }}</td>
+                                            <td>{{ $asignaRuta->ruta->desc_ruta ?? 'N/A' }}</td> <!-- Muestra el nombre de la ruta -->
+                                            <td>{{ $asignaRuta->especy->nombre_comun ?? 'N/A' }}</td> <!-- Muestra el nombre de la especie -->
                                             <td>
-                                                <form action="{{ route('asigna-rutas.destroy', $asignaRuta->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('asigna-rutas.show', $asignaRuta->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('asigna-rutas.edit', $asignaRuta->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                <form action="{{ route('asigna-rutas.destroy', $asignaRuta->id_asigna_rutas) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary" href="{{ route('asigna-rutas.show', $asignaRuta->id_asigna_rutas) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('asigna-rutas.edit', $asignaRuta->id_asigna_rutas) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>

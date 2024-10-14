@@ -8,20 +8,9 @@
     <div class="container-fluid" style="margin-top: 50px;">
         <div class="row">
             <!-- Sidebar -->
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-header">{{ __('Menu') }}</div>
-                    <div class="list-group list-group-flush">
-                        <a href="/clases" class="list-group-item list-group-item-action">Clases</a>
-                        <a href="/grupos" class="list-group-item list-group-item-action">Grupos</a>
-                        <a href="#" class="list-group-item list-group-item-action">Settings</a>
-                        <a href="#" class="list-group-item list-group-item-action">Logout</a>
-                    </div>
-                </div>
-            </div>
 
             <!-- Main content -->
-            <div class="col-md-9"> <!-- Ajusta la columna principal -->
+            <div class=""> <!-- Ajusta la columna principal -->
                 <div class="card">
                     <div class="card-header">
                         <div style="display: flex; justify-content: space-between; align-items: center;">

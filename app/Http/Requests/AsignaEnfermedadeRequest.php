@@ -22,7 +22,9 @@ class AsignaEnfermedadeRequest extends FormRequest
     public function rules(): array
     {
         return [
-			'id_asigna_enfermedad' => 'required',
+            'id_enfermedad' => 'required|exists:enfermedades,id_enfermedad', // Asegúrate de que esta tabla y campo existan
+            'id_especie' => 'required|exists:especies,id_especie',           // Asegúrate de que esta tabla y campo existan
+            // Agrega otras reglas de validación según sea necesario
         ];
     }
 }
