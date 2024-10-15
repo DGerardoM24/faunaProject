@@ -24,7 +24,7 @@ class MultimediaRequest extends FormRequest
         return [
             'id_multimedia' => 'required|string|max:255',
             'nombre' => 'required|string|max:255',
-            'multimedia' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validación para imágenes
+            'multimedia' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:3072', // Validación para imágenes
         ];
     }
 }

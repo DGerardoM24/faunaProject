@@ -53,13 +53,13 @@ class AsignaMultimediaController extends Controller
 
         // Asignar los valores del formulario
         $asignaMultimedia->id_imagen = $request->input('id_imagen');
-        $asignaMultimedia->id_especie = $request->input('id_especie');
+        $asignaMultimedia->id_especie = $request->input('id_especie');  
 
         // Guardar en la base de datos
         $asignaMultimedia->save();
 
         // Redirigir con éxito
-        return redirect()->route('asigna_multimedia.index')->with('success', 'Multimedia asignada correctamente');
+        return redirect()->route('asigna-multimedia.index')->with('success', 'Multimedia asignada correctamente');
     }
 
     /**
