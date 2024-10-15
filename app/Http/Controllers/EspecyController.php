@@ -60,7 +60,7 @@ class EspecyController extends Controller
         Especy::create($request->validated());
 
         // Redirigir o mostrar mensaje de éxito
-        return redirect()->route('especy.index')->with('success', 'Especie creada con éxito');
+        return redirect()->route('especies.index')->with('success', 'Especie creada con éxito');
     }
 
 

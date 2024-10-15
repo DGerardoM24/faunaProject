@@ -16,56 +16,6 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-
-    <style>
-        /* Estilos básicos para asegurar que el fondo cubra toda la pantalla */
-        html,
-        body {
-            height: 100%;
-            margin: 0;
-        }
-
-        /* Ajustar contenido para que no quede debajo de la barra de navegación fija */
-        main {
-            /* Ajusta este valor según la altura de tu barra de navegación */
-            width: 100%;
-            /* Asegura que el main ocupe el 100% del ancho */
-            display: flex;
-            justify-content: center;
-            /* Centra horizontalmente el contenido */
-        }
-
-        /* Mejora los enlaces del menú */
-        .menu-link {
-            background-color: #b91c1c;
-            color: white;
-            border-bottom: 1px solid #55212e;
-            padding: 10px 15px;
-            font-size: 1.1em;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        /* Efecto hover en los enlaces */
-        .menu-link:hover {
-            background-color: #e63946;
-            color: white;
-            border-bottom: 1px solid #8a2036;
-        }
-
-        /* Mejoras generales en la tarjeta */
-        .card {
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        /* Estilo para el encabezado */
-        .card-header {
-            font-weight: bold;
-            text-align: center;
-            font-size: 1.2em;
-            text-transform: uppercase;
-        }
-    </style>
 </head>
 
 <body>
@@ -84,7 +34,6 @@
                 <div class="ml-2">
                     <h4 class="text-xl font-bold">FaunaTEC</h4>
                 </div>
-
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto"></ul>
@@ -142,33 +91,6 @@
         </nav>
 
         <main class="py-4">
-            <!-- Columna con el menú de navegación -->
-            <div class="col-md-3" style="margin-top: 50px;">
-                <div class="card shadow-sm" style="border: 1px solid #55212e; border-radius: 8px;">
-                    <div class="card-header" style="background-color: #8a2036; color: white; font-weight: bold; text-align: center; font-size: 1.2em;">
-                        {{ __('Menu') }}
-                    </div>
-                    <div class="list-group list-group-flush">
-                        <a href="/especies" class="list-group-item list-group-item-action menu-link">Especies</a>
-                        <a href="/asigna-multimedia" class="list-group-item list-group-item-action menu-link">Asignar Imágenes</a>
-                        <a href="/asigna-enfermedades" class="list-group-item list-group-item-action menu-link">Asignar Enfermedades</a>
-                        <a href="/asigna-rutas" class="list-group-item list-group-item-action menu-link">Asignar Rutas</a>
-                        <a href="/banderas" class="list-group-item list-group-item-action menu-link">Banderas</a>
-                        <a href="/tipo-enfermedades" class="list-group-item list-group-item-action menu-link">Tipos de Enfermedades</a>
-                        <a href="/clases" class="list-group-item list-group-item-action menu-link">Clases</a>
-                        <a href="/ordenes" class="list-group-item list-group-item-action menu-link">Ordenes</a>
-                        <a href="/estados-conservacions" class="list-group-item list-group-item-action menu-link">Estados de Conservación</a>
-                        <a href="/entornos" class="list-group-item list-group-item-action menu-link">Entornos</a>
-                        <a href="/dietas" class="list-group-item list-group-item-action menu-link">Dietas</a>
-                        <a href="/familias" class="list-group-item list-group-item-action menu-link">Familias</a>
-                        <a href="/rutas" class="list-group-item list-group-item-action menu-link">Rutas</a>
-                        <a href="/multimedia" class="list-group-item list-group-item-action menu-link">Multimedia</a>
-                        <a href="/enfermedades" class="list-group-item list-group-item-action menu-link">Enfermedades</a>
-                        <a href="/grupos" class="list-group-item list-group-item-action menu-link">Grupos</a>
-                    </div>
-                </div>
-            </div>
-
             <!-- Contenedor para el contenido principal -->
             @yield('content')
         </main>

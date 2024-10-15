@@ -55,7 +55,7 @@
                 <h2 class="text-2xl font-bold mb-4">Más de 30 especies observadas</h2>
                 <div class="flex space-x-4">
                     <a href="#" class=" text-white px-4 py-2 rounded-lg" style="background-color: #8a2036">Información</a>
-                    <a href="#" class=" text-white px-4 py-2 rounded-lg" style="background-color: #8a2036">Ver todos</a>
+                    <a href="/animales" class=" text-white px-4 py-2 rounded-lg" style="background-color: #8a2036">Ver todos</a>
                 </div>
             </div>
         </div>

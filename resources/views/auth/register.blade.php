@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.napp')
 
 @section('content')
 
@@ -29,7 +29,7 @@
     </style>
 
     <!-- Cuadro negro transparente -->
-    <div class="form-container">
+    <div class="form-container" style="margin-top: 50px">
         <h1 class="text-center text-2x2 font-bold" style="color: #f5393b;">Registro de Usuario</h1>
 
         <div class="card-body">
