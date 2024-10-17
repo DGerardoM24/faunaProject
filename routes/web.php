@@ -58,3 +58,5 @@ Auth::routes();
 
 // Ruta para el home, protegido por autenticación
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::get('/vistas-especies/{id_especie}', [ConsultaEspeciesController::class, 'show'])->name('vistas-especie.show');

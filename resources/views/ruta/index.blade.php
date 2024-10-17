@@ -44,11 +44,9 @@
                                 <tbody>
                                     @foreach ($rutas as $ruta)
                                         <tr>
-
 										<td >{{ $ruta->id_ruta }}</td>
 										<td >{{ $ruta->desc_ruta }}</td>
-										<td >{{ $ruta->rango }}</td>
-
+										<td >{{ $ruta->rango }} mts</td>
                                             <td>
                                                 <form action="{{ route('rutas.destroy', $ruta->id_ruta) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary " href="{{ route('rutas.show', $ruta->id_ruta) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>

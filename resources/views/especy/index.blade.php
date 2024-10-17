@@ -12,7 +12,7 @@
                     <div class="card-header">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
                             <span id="card_title">
-                                {{ __('Especies') }}    
+                                {{ __('Especies') }}
                             </span>
                             <div class="float-right">
                                 <a href="{{ route('especies.create') }}" class="btn btn-primary btn-sm float-right" data-placement="left">
@@ -42,7 +42,7 @@
                                     <div><strong>Clase:</strong> {{ $especy->clase->desc_clase ?? 'Sin Clase' }}</div>
                                     <div><strong>Entorno:</strong> {{ $especy->entorno->desc_entorno ?? 'Sin Entorno' }}</div>
                                     <div><strong>Bandera:</strong> {{ $especy->bandera->nom_bandera ?? 'Sin Bandera' }}</div>
-                                    <div><strong>Tamaño:</strong> {{ $especy->tamanio }}</div>
+                                    <div><strong>Tamaño:</strong> {{ $especy->tamanio }} cm</div>
                                     <div><strong>Estado de Conservación:</strong> {{ $especy->estadosConservacion->desc_estado ?? 'Sin Estado' }}</div>
                                     <div><strong>Grupo:</strong> {{ $especy->grupo->desc_grupo ?? 'Sin Grupo' }}</div>
 

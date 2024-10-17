@@ -11,12 +11,18 @@
             @foreach ($especies as $especie)
                 <div class="col-md-4 mb-4">
                     <div class="card h-100">
-                        <!-- Mostrar la imagen de la especie si existe -->
-                        @if ($especie->Multimedia)
-                            <img src="{{ asset('storage/' . $especie->Multimedia) }}" class="card-img-top img-thumbnail" alt="Imagen de {{ $especie->Nombre_Comun }}" style="max-height: 250px; object-fit: cover; border-radius: 10px 10px 0 0;">
-                        @else
-                            <img src="{{ asset('images/default.jpg') }}" class="card-img-top img-thumbnail" alt="No image available" style="max-height: 250px; object-fit: cover; border-radius: 10px 10px 0 0;">
-                        @endif
+                        <!-- Hacer que toda la tarjeta sea clicable -->
+                        <a href="{{ route('vistas-especie.show', $especie->id_especie) }}" class="stretched-link">
+                            @if ($especie->Multimedia)
+                                <img src="{{ asset('storage/' . $especie->Multimedia) }}" class="card-img-top img-thumbnail"
+                                    alt="Imagen de {{ $especie->Nombre_Comun }}"
+                                    style="max-height: 250px; object-fit: cover; border-radius: 10px 10px 0 0;">
+                            @else
+                                <img src="{{ asset('images/default.jpg') }}" class="card-img-top img-thumbnail"
+                                    alt="No image available"
+                                    style="max-height: 250px; object-fit: cover; border-radius: 10px 10px 0 0;">
+                            @endif
+                        </a>
                         <div class="card-body">
                             <h5 class="card-title">{{ $especie->Nombre_Comun }}</h5>
                             <h6 class="card-subtitle mb-2">{{ $especie->Nombre_Cientifico }}</h6>
@@ -35,7 +41,7 @@
     <style>
         /* Estilos personalizados */
         .container {
-            margin-top: 50px;
+
         }
 
         .card {
@@ -65,7 +71,8 @@
 
         .card-subtitle {
             font-size: 1rem;
-            color: #f7c6d4; /* Color secundario para resaltar subtítulo */
+            color: #f7c6d4;
+            /* Color secundario para resaltar subtítulo */
             font-style: italic;
             margin-bottom: 10px;
         }
