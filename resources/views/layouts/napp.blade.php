@@ -81,6 +81,51 @@
             color: #777;
             /* Color más claro para derechos */
         }
+
+        /* Estilo del formulario de búsqueda */
+        .search-form {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .search-input {
+            border: 1px solid #8a2036;
+            /* Borde en color principal */
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            /* Borde redondeado */
+            font-size: 0.9rem;
+            color: #333;
+            /* Texto oscuro */
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .search-input:focus {
+            border-color: #5a141e;
+            /* Color más oscuro al enfocar */
+            box-shadow: 0 0 5px rgba(138, 32, 54, 0.4);
+            /* Sombra sutil */
+            outline: none;
+        }
+
+        .btn-search {
+            background-color: #8a2036;
+            /* Color de fondo del botón */
+            color: #ffffff;
+            /* Color de texto */
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 20px;
+            /* Borde redondeado */
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
+        }
+
+        .btn-search:hover {
+            background-color: #5a141e;
+            /* Fondo más oscuro al pasar el mouse */
+        }
     </style>
 </head>
 
@@ -88,49 +133,55 @@
     <div id="app">
         <!-- Barra de navegación fija en la parte superior -->
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed-top" style="padding: 0.25rem 1rem;">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="/images/Logo.png" alt="Sari" style="width:25px;"> <!-- Reducir el tamaño del logo -->
-                </a>
+            <div class="container d-flex justify-content-center align-items-center">
+                <div class="d-flex align-items-center">
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                        <img src="/images/Logo.png" alt="Sari" style="width:25px;">
+                        <!-- Reducir el tamaño del logo -->
+                    </a>
+                    <a class="navbar-link ms-2" href="{{ url('/') }}"
+                        style="font-size: 1rem; color: #8a2036;">Inicio</a>
+                    <a class="navbar-link ms-2" href="{{ url('/animales') }}"
+                        style="font-size: 1rem; color: #8a2036;">Especies</a>
+                    <a class="navbar-link ms-2" href="{{ url('/venfermedades') }}"
+                        style="font-size: 1rem; color: #8a2036;">Enfermedades</a>
+                </div>
+
+                <!-- Cuadro de búsqueda de especies -->
+                <form action="" method="GET" class="d-flex ms-3 search-form">
+                    <input type="text" name="query" class="form-control search-input"
+                        placeholder="Buscar especies...">
+                    <button type="submit" class="btn btn-search">Buscar</button>
+                </form>
+
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="ml-2">
-                    <h5 class="text-lg font-bold" style="font-size: 1rem;">FaunaTEC</h5>
-                    <!-- Ajustar el tamaño de la fuente -->
-                </div>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto"></ul>
-
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
-
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
                                     <a href="{{ route('login') }}"
                                         class="text-sm font-bold dark:text-gray-100 underline m-1"
                                         style="color: #8a2036; font-size: 0.9rem;">Iniciar Sesión</a>
-                                    <!-- Reducir margen y tamaño de fuente -->
                                 </li>
                             @endif
-
                             @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a href="{{ route('register') }}"
                                         class="ml-3 text-sm font-bold dark:text-gray-300 underline m-1"
                                         style="color: #8a2036; font-size: 0.9rem;">Registrarse</a>
-                                    <!-- Reducir margen y tamaño de fuente -->
                                 </li>
                             @endif
                         @else
                             <li class="nav-item">
                                 <a href="{{ url('/home') }}" class="text-sm font-bold dark:text-gray-100 underline m-1"
                                     style="color: #8a2036; font-size: 0.9rem;">Panel</a>
-                                <!-- Reducir margen y tamaño de fuente -->
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown"
@@ -139,7 +190,6 @@
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
-
                                 <div class="dropdown-menu dropdown-menu-end"
                                     style="background: #8a2036; border-radius: 0.5rem; padding: 0.5rem;"
                                     aria-labelledby="navbarDropdown">
@@ -148,7 +198,6 @@
                                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         {{ __('Cerrar Sesión') }}
                                     </a>
-
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
@@ -159,6 +208,7 @@
                 </div>
             </div>
         </nav>
+
 
         <main class="py-4" style="margin-top: 70px;">
             <!-- Contenedor para el contenido principal -->

@@ -109,7 +109,7 @@ class ConsultaEspeciesController extends Controller
             grupos.desc_grupo
     ", [$id_especie]);
 
-    $especief = DB::selectOne("
+        $especief = DB::selectOne("
     SELECT
             enfermedades.nombre_enfermedad AS Enfermedades
         FROM
@@ -143,6 +143,6 @@ class ConsultaEspeciesController extends Controller
             abort(404, 'Especie no encontrada');
         }
 
-        return view('vistas-especie.show', compact('especie','especief'));
+        return view('vistas-especie.show', compact('especie', 'especief'));
     }
 }

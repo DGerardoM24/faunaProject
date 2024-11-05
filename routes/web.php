@@ -7,6 +7,7 @@ use App\Http\Controllers\AsignaRutaController;
 use App\Http\Controllers\BanderaController;
 use App\Http\Controllers\ClaseController;
 use App\Http\Controllers\ComentarioController;
+use App\Http\Controllers\ConsultaEnfermedades;
 use App\Http\Controllers\ConsultaEspeciesController;
 use App\Http\Controllers\DietaController;
 use App\Http\Controllers\EnfermedadeController;
@@ -50,8 +51,10 @@ Route::resource('asigna-multimedia', AsignaMultimediaController::class);
 Route::resource('asigna-enfermedades', AsignaEnfermedadeController::class);
 Route::resource('asigna-rutas', AsignaRutaController::class);
 Route::resource('asigna-comentarios', AsignaComentarioController::class);
-Route::resource('animales', ConsultaEspeciesController::class);
 
+
+Route::resource('animales', ConsultaEspeciesController::class);
+Route::resource('venfermedades', ConsultaEnfermedades ::class);
 
 // Rutas de autenticación (si estás utilizando laravel/ui)
 Auth::routes();
@@ -60,3 +63,5 @@ Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/vistas-especies/{id_especie}', [ConsultaEspeciesController::class, 'show'])->name('vistas-especie.show');
+
+

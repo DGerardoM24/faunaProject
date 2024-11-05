@@ -59,7 +59,94 @@
         .footer-links a:hover {
             color: #cccccc;
         }
+
+        /* Estilo del formulario de búsqueda */
+        .search-form {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .search-input {
+            border: 1px solid #8a2036;
+            /* Borde en color principal */
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            /* Borde redondeado */
+            font-size: 0.9rem;
+            color: #333;
+            /* Texto oscuro */
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .search-input:focus {
+            border-color: #5a141e;
+            /* Color más oscuro al enfocar */
+            box-shadow: 0 0 5px rgba(138, 32, 54, 0.4);
+            /* Sombra sutil */
+            outline: none;
+        }
+
+        .btn-search {
+            background-color: #8a2036;
+            /* Color de fondo del botón */
+            color: #ffffff;
+            /* Color de texto */
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 20px;
+            /* Borde redondeado */
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
+        }
+
+        .btn-search:hover {
+            background-color: #5a141e;
+            /* Fondo más oscuro al pasar el mouse */
+        }
+
+        /* Contenedor del carrusel */
+        .carousel-container {
+            overflow: hidden;
+            white-space: nowrap;
+            width: 100%;
+        }
+
+        .carousel-images {
+            display: inline-flex;
+            animation: scroll 15s linear infinite;
+        }
+
+        .carousel-images img {
+            width: 500px;
+            height: auto;
+            margin-right: 10px;
+            border-radius: 8px;
+        }
+
+        /* Animación para mover las imágenes de derecha a izquierda */
+        @keyframes scroll {
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
     </style>
+    <script>
+        const carousel = document.querySelector('.carousel-images');
+
+        carousel.addEventListener('mouseover', () => {
+            carousel.style.animationPlayState = 'paused';
+        });
+
+        carousel.addEventListener('mouseout', () => {
+            carousel.style.animationPlayState = 'running';
+        });
+    </script>
+
 </head>
 
 <body class="bg-gray-100">
@@ -73,19 +160,27 @@
                     <h1 class="text-xl font-bold">FaunaTEC</h1>
                 </div>
             </div>
+            <a class="text-sm font-bold underline" href="{{ url('/') }}">Inicio</a>
+            <a class="text-sm font-bold underline" href="{{ url('/animales') }}">Especies</a>
+            <a class="text-sm font-bold underline" href="{{ url('/venfermedades') }}">Enfermedades</a>
+            <form action="" method="GET" class="d-flex ms-3 search-form">
+                <input type="text" name="query" class="form-control search-input" placeholder="Buscar especies...">
+                <button type="submit" class="btn btn-search">Buscar</button>
+            </form>
 
             <!-- Navigation links -->
             @if (Route::has('login'))
-            <div class="flex items-center space-x-4">
-                @auth
-                <a href="{{ url('/home') }}" class="text-sm font-bold underline">Panel de Inicio</a>
-                @else
-                <a href="{{ route('login') }}" class="text-sm font-bold underline">Iniciar Sesión</a>
-                @if (Route::has('register'))
-                <a href="{{ route('register') }}" class="text-sm font-bold underline">Registrarse</a>
-                @endif
-                @endauth
-            </div>
+                <div class="flex items-center space-x-4">
+
+                    @auth
+                        <a href="{{ url('/home') }}" class="text-sm font-bold underline">Panel de Inicio</a>
+                    @else
+                        <a href="{{ route('login') }}" class="text-sm font-bold underline">Iniciar Sesión</a>
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}" class="text-sm font-bold underline">Registrarse</a>
+                        @endif
+                    @endauth
+                </div>
             @endif
         </header>
 
@@ -96,12 +191,18 @@
         <section class="bg-gray-300 shadow-md rounded-lg p-6 mt-6 custom-section">
             <div class="flex flex-col md:flex-row">
                 <div class="md:w-1/2">
-                    <img src="/images/mapaches.jpg" alt="Squirrel" class="rounded-lg">
+                    <div class="carousel-container">
+                        <div class="carousel-images">
+                            <img src="/images/mapaches.jpg" alt="Mapache">
+                            <img src="/images/liebre.jpg" alt="Venado">
+                            <!-- Agrega más imágenes según las especies que tengas -->
+                        </div>
+                    </div>
                 </div>
                 <div class="md:w-1/2 md:ml-6 mt-4 md:mt-0">
-                    <h2 class="text-2xl font-bold mb-4">Más de 30 especies observadas</h2>
+                    <h2 class="text-2xl font-bold mb-4">Más de 60 especies observadas</h2>
                     <div class="flex space-x-4">
-                        <a href="#" class="custom-button px-4 py-2 rounded-lg">Información</a>
+                        <a href="/vistas-especies/7" class="custom-button px-4 py-2 rounded-lg">Información</a>
                         <a href="/animales" class="custom-button px-4 py-2 rounded-lg">Ver todos</a>
                     </div>
                 </div>
@@ -136,9 +237,10 @@
         </section>
 
         <!-- More Information Section -->
-        <section class="text-white rounded-lg p-6 mt-6 flex justify-between items-center custom-section" style="background-color: #8a2036">
-            <p>Cuídate de las enfermedades que causa la fauna de Valle de Bravo</p>
-            <a href="#" class="bg-gray-200 px-4 py-2 rounded-lg custom-button">Más información</a>
+        <section class="text-white rounded-lg p-6 mt-6 flex justify-between items-center custom-section"
+            style="background-color: #8a2036">
+            <p>Cuídate de las enfermedades que hay en Valle de Bravo</p>
+            <a href="/venfermedades" class="bg-gray-200 px-4 py-2 rounded-lg custom-button">Más información</a>
         </section>
 
         <!-- Institutions Section -->
@@ -146,17 +248,20 @@
             <h2 class="text-xl font-bold">Instituciones Especializadas</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
                 <!-- CONAFOR -->
-                <div class="bg-white shadow-md rounded-lg p-4 flex flex-col justify-between items-center custom-section">
+                <div
+                    class="bg-white shadow-md rounded-lg p-4 flex flex-col justify-between items-center custom-section">
                     <div class="text-center">
                         <h3 class="text-lg font-bold">CONAFOR</h3>
                         <p class="mt-2">Organización dedicada a la conservación de la fauna silvestre en México.</p>
                     </div>
                     <img src="/images/CONAFOR.png" alt="CONAFOR" class="h-21 w-21 my-4">
-                    <a href="https://www.conafor.gob.mx" target="_blank" class="bg-red-700 text-white px-4 py-2 rounded-lg mt-4">Visitar Sitio Web</a>
+                    <a href="https://www.conafor.gob.mx" target="_blank"
+                        class="bg-red-700 text-white px-4 py-2 rounded-lg mt-4">Visitar Sitio Web</a>
                 </div>
 
                 <!-- CONANP -->
-                <div class="bg-white shadow-md rounded-lg p-4 flex flex-col justify-between items-center custom-section">
+                <div
+                    class="bg-white shadow-md rounded-lg p-4 flex flex-col justify-between items-center custom-section">
                     <div class="text-center">
                         <h3 class="text-lg font-bold">CONANP</h3>
                         <p class="mt-2">La Comisión Nacional de Áreas Naturales Protegidas.</p>
@@ -166,10 +271,12 @@
                 </div>
 
                 <!-- ONG -->
-                <div class="bg-white shadow-md rounded-lg p-4 flex flex-col justify-between items-center custom-section">
+                <div
+                    class="bg-white shadow-md rounded-lg p-4 flex flex-col justify-between items-center custom-section">
                     <div class="text-center">
                         <h3 class="text-lg font-bold">ONG</h3>
-                        <p class="mt-2">ONG internacional con programas para la preservación de especies en peligro.</p>
+                        <p class="mt-2">ONG internacional con programas para la preservación de especies en peligro.
+                        </p>
                     </div>
                     <img src="/images/ong.jpg" alt="ONG" class="h-17 w-17 my-4">
                     <a href="#" class="bg-red-700 text-white px-4 py-2 rounded-lg mt-4">Visitar Sitio Web</a>
@@ -186,7 +293,8 @@
                 <h3 class="font-bold">Regiones</h3>
                 <ul class="mt-2 footer-links">
                     <li><a href="https://edomex.gob.mx" target="_blank" class="block mt-1">Estado de México</a></li>
-                    <li><a href="https://vallebravo.gob.mx" target="_blank" class="block mt-1">Valle de Bravo</a></li>
+                    <li><a href="https://vallebravo.gob.mx" target="_blank" class="block mt-1">Valle de Bravo</a>
+                    </li>
                     <li><a href="https://www.gob.mx" target="_blank" class="block mt-1">Gobierno de México</a></li>
                 </ul>
             </div>
