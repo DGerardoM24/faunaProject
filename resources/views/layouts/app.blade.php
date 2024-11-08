@@ -143,6 +143,49 @@
             color: #777;
             /* Color más claro para derechos */
         }
+        .search-form {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .search-input {
+            border: 1px solid #8a2036;
+            /* Borde en color principal */
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            /* Borde redondeado */
+            font-size: 0.9rem;
+            color: #333;
+            /* Texto oscuro */
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .search-input:focus {
+            border-color: #5a141e;
+            /* Color más oscuro al enfocar */
+            box-shadow: 0 0 5px rgba(138, 32, 54, 0.4);
+            /* Sombra sutil */
+            outline: none;
+        }
+
+        .btn-search {
+            background-color: #8a2036;
+            /* Color de fondo del botón */
+            color: #ffffff;
+            /* Color de texto */
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 20px;
+            /* Borde redondeado */
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
+        }
+
+        .btn-search:hover {
+            background-color: #5a141e;
+            /* Fondo más oscuro al pasar el mouse */
+        }
     </style>
 </head>
 
@@ -151,17 +194,24 @@
         <!-- Barra de navegación fija en la parte superior -->
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed-top">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="/images/Logo.png" alt="Sari" style="width: 25px">
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="ml-2">
-                    <h4 class="text-xl font-bold">FaunaTEC</h4>
+                <div class="d-flex align-items-center">
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                        <img src="/images/Logo.png" alt="Sari" style="width:25px;">
+                        <!-- Reducir el tamaño del logo -->
+                    </a>
+                    <a class="navbar-link ms-2" href="{{ url('/') }}"
+                        style="font-size: 1rem; color: #8a2036;">Inicio</a>
+                    <a class="navbar-link ms-2" href="{{ url('/animales') }}"
+                        style="font-size: 1rem; color: #8a2036;">Especies</a>
+                    <a class="navbar-link ms-2" href="{{ url('/venfermedades') }}"
+                        style="font-size: 1rem; color: #8a2036;">Enfermedades</a>
                 </div>
+
+                <!-- Cuadro de búsqueda de especies -->
+                <form action="{{ route('busqueda.especies') }}" method="GET" class="d-flex ms-3 search-form">
+                    <input type="text" name="termino" placeholder="Buscar especies..." required class="form-control search-input">
+                    <button type="submit" class="btn btn-search">Buscar</button>
+                </form>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
@@ -173,27 +223,30 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a href="{{ route('login') }}"
-                                        class="text-sm font-bold dark:text-gray-100 underline m-2"
-                                        style="color: #8a2036">Iniciar Sesión</a>
+                                    <a href="{{ route('login') }}" class="text-sm font-bold underline m-2"
+                                        style="color: #8a2036">
+                                        Iniciar Sesión
+                                    </a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a href="{{ route('register') }}"
-                                        class="ml-4 text-sm font-bold dark:text-gray-300 underline m-2"
-                                        style="color: #8a2036">Registrarse</a>
+                                    <a href="{{ route('register') }}" class="ml-4 text-sm font-bold underline m-2"
+                                        style="color: #8a2036">
+                                        Registrarse
+                                    </a>
                                 </li>
                             @endif
                         @else
                             <li class="nav-item">
-                                <a href="{{ url('/home') }}" class="text-sm font-bold dark:text-gray-100 underline m-2"
-                                    style="color: #8a2036">Panel</a>
+                                <a href="{{ url('/home') }}" class="text-sm font-bold underline m-2"
+                                    style="color: #8a2036">
+                                    Panel
+                                </a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown"
-                                    class="ml-4 text-sm font-bold text-gray-300 underline dropdown-toggle"
+                                <a id="navbarDropdown" class="ml-4 text-sm font-bold underline dropdown-toggle"
                                     style="color: #8a2036;" href="#" role="button" data-bs-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
@@ -202,8 +255,7 @@
                                 <div class="dropdown-menu dropdown-menu-end"
                                     style="background: #8a2036; border-radius: 0.5rem; padding: 0.5rem;"
                                     aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item text-sm font-bold" style="color: #ffffff;"
-                                        href="{{ route('logout') }}"
+                                    <a class="dropdown-item text-sm font-bold text-white" href="{{ route('logout') }}"
                                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         {{ __('Cerrar Sesión') }}
                                     </a>

@@ -145,6 +145,24 @@
         carousel.addEventListener('mouseout', () => {
             carousel.style.animationPlayState = 'running';
         });
+
+
+    </script>
+
+    <script>
+        function toggleDropdown() {
+            const dropdown = document.getElementById('dropdownMenu');
+            dropdown.classList.toggle('hidden');
+        }
+
+        // Cerrar el menú si se hace clic fuera de él
+        document.addEventListener('click', function(event) {
+            const dropdown = document.getElementById('dropdownMenu');
+            const toggleButton = document.getElementById('navbarDropdown');
+            if (!dropdown.contains(event.target) && !toggleButton.contains(event.target)) {
+                dropdown.classList.add('hidden');
+            }
+        });
     </script>
 
 </head>
@@ -163,8 +181,10 @@
             <a class="text-sm font-bold underline" href="{{ url('/') }}">Inicio</a>
             <a class="text-sm font-bold underline" href="{{ url('/animales') }}">Especies</a>
             <a class="text-sm font-bold underline" href="{{ url('/venfermedades') }}">Enfermedades</a>
-            <form action="" method="GET" class="d-flex ms-3 search-form">
-                <input type="text" name="query" class="form-control search-input" placeholder="Buscar especies...">
+
+            <form action="{{ route('busqueda.especies') }}" method="GET" class="d-flex ms-3 search-form">
+                <input type="text" name="termino" placeholder="Buscar especies..." required
+                    class="form-control search-input">
                 <button type="submit" class="btn btn-search">Buscar</button>
             </form>
 
@@ -173,7 +193,28 @@
                 <div class="flex items-center space-x-4">
 
                     @auth
-                        <a href="{{ url('/home') }}" class="text-sm font-bold underline">Panel de Inicio</a>
+                        <li class="nav-item">
+                            <a href="{{ url('/home') }}" class="text-sm font-bold dark:text-gray-100 underline m-1"
+                                style="color: #8a2036; font-size: 0.9rem;">Panel</a>
+                        </li>
+                        <li class="nav-item dropdown relative">
+                            <a id="navbarDropdown" class="ml-3 text-sm font-bold text-gray-300 underline cursor-pointer"
+                                style="color: #8a2036; font-size: 0.9rem;" onclick="toggleDropdown()">
+                                {{ Auth::user()->name }}
+                            </a>
+                            <div id="dropdownMenu"
+                                class="hidden absolute right-0 mt-2 w-48 bg-gray-800 text-white rounded-md shadow-lg"
+                                style="background: #8a2036; border-radius: 0.5rem; padding: 0.5rem;">
+                                <a class="dropdown-item text-sm font-bold block px-4 py-2 hover:bg-gray-700"
+                                    href="{{ route('logout') }}"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    {{ __('Cerrar Sesión') }}
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
                     @else
                         <a href="{{ route('login') }}" class="text-sm font-bold underline">Iniciar Sesión</a>
                         @if (Route::has('register'))

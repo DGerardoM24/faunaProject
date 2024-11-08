@@ -5,6 +5,7 @@ use App\Http\Controllers\AsignaEnfermedadeController;
 use App\Http\Controllers\AsignaMultimediaController;
 use App\Http\Controllers\AsignaRutaController;
 use App\Http\Controllers\BanderaController;
+use App\Http\Controllers\BusquedaEspeciesController;
 use App\Http\Controllers\ClaseController;
 use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\ConsultaEnfermedades;
@@ -52,6 +53,7 @@ Route::resource('asigna-enfermedades', AsignaEnfermedadeController::class);
 Route::resource('asigna-rutas', AsignaRutaController::class);
 Route::resource('asigna-comentarios', AsignaComentarioController::class);
 
+Route::get('/buscar-especies', [BusquedaEspeciesController::class, 'buscar'])->name('busqueda.especies');
 
 Route::resource('animales', ConsultaEspeciesController::class);
 Route::resource('venfermedades', ConsultaEnfermedades ::class);

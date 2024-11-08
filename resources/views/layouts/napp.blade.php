@@ -18,70 +18,52 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <style>
         /* Estilo para el pie de página */
-        .custom-footer {
-            background-color: #f8f9fa;
-            padding: 2rem 0;
-            /* Aumentar el espaciado superior e inferior */
-            position: relative;
-            bottom: 0;
-            width: 100%;
-            font-size: 0.9rem;
-            /* Tamaño de texto más legible */
-            color: #333;
-            /* Color de texto más oscuro */
-        }
+         /* Estilo para el pie de página */
+    .custom-footer {
+        background-color: #55212e;
+        padding: 4rem 0; /* Aumentar el espaciado para que sea más alargado */
+        position: relative;
+        bottom: 0;
+        width: 100%;
+        font-size: 0.9rem;
+        color: #ffffff; /* Cambiar color del texto para contraste */
+    }
 
-        .footer-links h4,
-        .footer-icons h4 {
-            font-size: 1.2rem;
-            /* Tamaño de encabezado mayor */
-            margin-bottom: 1rem;
-            /* Espaciado inferior */
-            color: #8a2036;
-            /* Color del título */
-        }
+    .footer-links h4,
+    .footer-icons h4 {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+        color: #ffffff; /* Cambiar color del título para contraste */
+    }
 
-        .footer-links a,
-        .footer-icons a {
-            color: #8a2036;
-            /* Color de los enlaces */
-            text-decoration: none;
-            /* Sin subrayado */
-            transition: color 0.3s;
-            /* Transición de color */
-        }
+    .footer-links a,
+    .footer-icons a {
+        color: #ffffff; /* Cambiar color de los enlaces */
+        text-decoration: none;
+        transition: color 0.3s;
+    }
 
-        .footer-links a:hover,
-        .footer-icons a:hover {
-            color: #5a141e;
-            /* Color más oscuro al pasar el mouse */
-            text-decoration: underline;
-            /* Subrayado al pasar el mouse */
-        }
+    .footer-links a:hover,
+    .footer-icons a:hover {
+        color: #d1a5ab; /* Color más claro al pasar el mouse */
+        text-decoration: underline;
+    }
 
-        .footer-icons img {
-            width: 30px;
-            /* Aumentar tamaño de iconos */
-            margin: 0 10px;
-            /* Espaciado entre iconos */
-            transition: transform 0.3s;
-            /* Transición al pasar el mouse */
-        }
+    .footer-icons img {
+        width: 30px;
+        margin: 0 10px;
+        transition: transform 0.3s;
+    }
 
-        .footer-icons img:hover {
-            transform: scale(1.1);
-            /* Efecto de zoom al pasar el mouse */
-        }
+    .footer-icons img:hover {
+        transform: scale(1.1);
+    }
 
-        .footer-text {
-            margin-top: 1rem;
-            /* Espaciado superior para el texto de derechos */
-            font-size: 0.9rem;
-            /* Tamaño de texto para derechos */
-            color: #777;
-            /* Color más claro para derechos */
-        }
-
+    .footer-text {
+        margin-top: 2rem; /* Espaciado superior para el texto de derechos */
+        font-size: 0.9rem;
+        color: #d1a5ab; /* Color más claro para derechos */
+    }
         /* Estilo del formulario de búsqueda */
         .search-form {
             display: flex;
@@ -148,9 +130,8 @@
                 </div>
 
                 <!-- Cuadro de búsqueda de especies -->
-                <form action="" method="GET" class="d-flex ms-3 search-form">
-                    <input type="text" name="query" class="form-control search-input"
-                        placeholder="Buscar especies...">
+                <form action="{{ route('busqueda.especies') }}" method="GET" class="d-flex ms-3 search-form">
+                    <input type="text" name="termino" placeholder="Buscar especies..." required class="form-control search-input">
                     <button type="submit" class="btn btn-search">Buscar</button>
                 </form>
 
