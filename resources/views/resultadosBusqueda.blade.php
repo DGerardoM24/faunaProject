@@ -9,7 +9,7 @@
         <h2 class="text-center">Resultados de la búsqueda para: "{{ str_replace('%', '', $termino) }}"</h2>
 
 
-        @if($resultados->isEmpty())
+        @if ($resultados->isEmpty())
             <p>No se encontraron especies que coincidan con el término.</p>
         @else
             <div class="row">
@@ -18,8 +18,8 @@
                         <div class="card h-100">
                             <a href="{{ route('vistas-especie.show', $especie->id_especie) }}" class="stretched-link">
                                 @if ($especie->multimedia)
-                                    <img src="{{ asset('storage/' . $especie->multimedia) }}" class="card-img-top img-thumbnail"
-                                        alt="Imagen de {{ $especie->nombre_comun }}"
+                                    <img src="{{ asset('storage/' . $especie->multimedia) }}"
+                                        class="card-img-top img-thumbnail" alt="Imagen de {{ $especie->nombre_comun }}"
                                         style="max-height: 250px; object-fit: cover; border-radius: 10px 10px 0 0;">
                                 @else
                                     <img src="{{ asset('images/default.jpg') }}" class="card-img-top img-thumbnail"
@@ -45,9 +45,7 @@
 
     <style>
         /* Estilos personalizados */
-        .container {
-
-        }
+        .container {}
 
         .card {
             background-color: #8a2035;
@@ -108,4 +106,7 @@
             box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
         }
     </style>
+
+    
+
 @endsection

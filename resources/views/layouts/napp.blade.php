@@ -16,99 +16,35 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-    <style>
-        /* Estilo para el pie de página */
-         /* Estilo para el pie de página */
-    .custom-footer {
-        background-color: #55212e;
-        padding: 4rem 0; /* Aumentar el espaciado para que sea más alargado */
-        position: relative;
-        bottom: 0;
-        width: 100%;
-        font-size: 0.9rem;
-        color: #ffffff; /* Cambiar color del texto para contraste */
-    }
+    <link rel="stylesheet" href="{{ asset('css/napp.css') }}">
 
-    .footer-links h4,
-    .footer-icons h4 {
-        font-size: 1.2rem;
-        margin-bottom: 1rem;
-        color: #ffffff; /* Cambiar color del título para contraste */
-    }
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 
-    .footer-links a,
-    .footer-icons a {
-        color: #ffffff; /* Cambiar color de los enlaces */
-        text-decoration: none;
-        transition: color 0.3s;
-    }
+    <script>
+        $(function () {
+            $('#termino').autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "{{ route('buscar.autocompletar') }}",
+                        data: {
+                            termino: request.term
+                        },
+                        success: function (data) {
+                            response(data);
+                        }
+                    });
+                },
+                minLength: 3,
+                select: function (event, ui) {
+                    // Opcional: manejar cuando el usuario selecciona una opción
+                    $('#termino').val(ui.item.value);
+                }
+            });
+        });
+    </script>
 
-    .footer-links a:hover,
-    .footer-icons a:hover {
-        color: #d1a5ab; /* Color más claro al pasar el mouse */
-        text-decoration: underline;
-    }
-
-    .footer-icons img {
-        width: 30px;
-        margin: 0 10px;
-        transition: transform 0.3s;
-    }
-
-    .footer-icons img:hover {
-        transform: scale(1.1);
-    }
-
-    .footer-text {
-        margin-top: 2rem; /* Espaciado superior para el texto de derechos */
-        font-size: 0.9rem;
-        color: #d1a5ab; /* Color más claro para derechos */
-    }
-        /* Estilo del formulario de búsqueda */
-        .search-form {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .search-input {
-            border: 1px solid #8a2036;
-            /* Borde en color principal */
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            /* Borde redondeado */
-            font-size: 0.9rem;
-            color: #333;
-            /* Texto oscuro */
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
-
-        .search-input:focus {
-            border-color: #5a141e;
-            /* Color más oscuro al enfocar */
-            box-shadow: 0 0 5px rgba(138, 32, 54, 0.4);
-            /* Sombra sutil */
-            outline: none;
-        }
-
-        .btn-search {
-            background-color: #8a2036;
-            /* Color de fondo del botón */
-            color: #ffffff;
-            /* Color de texto */
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 20px;
-            /* Borde redondeado */
-            font-size: 0.9rem;
-            transition: background-color 0.3s;
-        }
-
-        .btn-search:hover {
-            background-color: #5a141e;
-            /* Fondo más oscuro al pasar el mouse */
-        }
-    </style>
 </head>
 
 <body>
@@ -130,9 +66,9 @@
                 </div>
 
                 <!-- Cuadro de búsqueda de especies -->
-                <form action="{{ route('busqueda.especies') }}" method="GET" class="d-flex ms-3 search-form">
-                    <input type="text" name="termino" placeholder="Buscar especies..." required class="form-control search-input">
-                    <button type="submit" class="btn btn-search">Buscar</button>
+                <form action="{{ route('buscar') }}" method="GET" class="search-form">
+                    <input type="text" name="termino" id="termino" class="search-input" placeholder="Buscar especies...">
+                    <button type="submit" class="search-button">Buscar</button>
                 </form>
 
 
@@ -198,33 +134,27 @@
 
         <!-- Footer -->
         <footer class="custom-footer">
-            <div class="container text-center">
-                <div class="footer-links">
-                    <h4>Contáctanos</h4>
-                    <h5>
-                        <a href="mailto:info@faunatec.com">info@faunatec.com</a>
-                    </h5>
-                    <h5>
-                        <a href="tel:+123456789">(+1) 234-567-89</a>
-                    </h5>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 footer-links">
+                        <h4>Enlaces útiles</h4>
+                        <a href="#">Inicio</a> |
+                        <a href="#">Acerca de</a> |
+                        <a href="#">Contacto</a>
+                    </div>
+                    <div class="col-md-6 footer-icons text-md-end">
+                        <h4>Síguenos</h4>
+                        <a href="#"><img src="path/to/facebook-icon.png" alt="Facebook"></a>
+                        <a href="#"><img src="path/to/instagram-icon.png" alt="Instagram"></a>
+                        <a href="#"><img src="path/to/twitter-icon.png" alt="Twitter"></a>
+                    </div>
                 </div>
-                <div class="footer-icons">
-                    <h4>Redes Sociales</h4>
-                    <a href="https://www.facebook.com/FaunaTEC" target="_blank">
-                        <img src="/images/facebook.png" alt="Facebook">
-                    </a>
-                    <a href="https://www.twitter.com/FaunaTEC" target="_blank">
-                        <img src="/images/x.png" alt="Twitter">
-                    </a>
-                    <a href="https://www.instagram.com/FaunaTEC" target="_blank">
-                        <img src="/images/instagram.png" alt="Instagram">
-                    </a>
-                </div>
-                <div class="footer-text">
-                    <p>© 2024 FaunaTEC. Todos los derechos reservados.</p>
+                <div class="footer-text text-center mt-3">
+                    © 2024 FaunaTEC. Todos los derechos reservados.
                 </div>
             </div>
         </footer>
+
     </div>
 </body>
 

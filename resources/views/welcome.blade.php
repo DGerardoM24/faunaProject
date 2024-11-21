@@ -9,132 +9,10 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
     <!-- Styles -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
-    <style>
-        /* Custom styles */
-        .custom-header {
-            background-color: #ffffff;
-            color: rgb(123, 14, 14);
-            padding: 10px 0;
-        }
 
-        .custom-header h1 {
-            font-size: 1.5rem;
-        }
+    <link rel="stylesheet" href="{{ asset('css/welcome.css') }}">
 
-        .custom-section {
-            transition: transform 0.3s ease;
-        }
 
-        .custom-section:hover {
-            transform: scale(1.02);
-        }
-
-        .footer-icons img {
-            width: 25px;
-            height: 25px;
-            filter: brightness(0) invert(1);
-        }
-
-        .custom-footer {
-            background-color: #55212e;
-            padding: 20px;
-            color: white;
-        }
-
-        .custom-button {
-            background-color: #8a2036;
-            color: white;
-            transition: background-color 0.3s ease;
-        }
-
-        .custom-button:hover {
-            background-color: #721a2b;
-        }
-
-        .footer-links a {
-            color: #f0f0f0;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: #cccccc;
-        }
-
-        /* Estilo del formulario de búsqueda */
-        .search-form {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .search-input {
-            border: 1px solid #8a2036;
-            /* Borde en color principal */
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            /* Borde redondeado */
-            font-size: 0.9rem;
-            color: #333;
-            /* Texto oscuro */
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
-
-        .search-input:focus {
-            border-color: #5a141e;
-            /* Color más oscuro al enfocar */
-            box-shadow: 0 0 5px rgba(138, 32, 54, 0.4);
-            /* Sombra sutil */
-            outline: none;
-        }
-
-        .btn-search {
-            background-color: #8a2036;
-            /* Color de fondo del botón */
-            color: #ffffff;
-            /* Color de texto */
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 20px;
-            /* Borde redondeado */
-            font-size: 0.9rem;
-            transition: background-color 0.3s;
-        }
-
-        .btn-search:hover {
-            background-color: #5a141e;
-            /* Fondo más oscuro al pasar el mouse */
-        }
-
-        /* Contenedor del carrusel */
-        .carousel-container {
-            overflow: hidden;
-            white-space: nowrap;
-            width: 100%;
-        }
-
-        .carousel-images {
-            display: inline-flex;
-            animation: scroll 15s linear infinite;
-        }
-
-        .carousel-images img {
-            width: 500px;
-            height: auto;
-            margin-right: 10px;
-            border-radius: 8px;
-        }
-
-        /* Animación para mover las imágenes de derecha a izquierda */
-        @keyframes scroll {
-            0% {
-                transform: translateX(100%);
-            }
-
-            100% {
-                transform: translateX(-100%);
-            }
-        }
-    </style>
     <script>
         const carousel = document.querySelector('.carousel-images');
 
@@ -145,8 +23,6 @@
         carousel.addEventListener('mouseout', () => {
             carousel.style.animationPlayState = 'running';
         });
-
-
     </script>
 
     <script>
@@ -164,6 +40,34 @@
             }
         });
     </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
+    <script>
+        $(function() {
+            $('#termino').autocomplete({
+                source: function(request, response) {
+                    $.ajax({
+                        url: "{{ route('buscar.autocompletar') }}",
+                        data: {
+                            termino: request.term
+                        },
+                        success: function(data) {
+                            response(data);
+                        }
+                    });
+                },
+                minLength: 3,
+                select: function(event, ui) {
+                    // Opcional: manejar cuando el usuario selecciona una opción
+                    $('#termino').val(ui.item.value);
+                }
+            });
+        });
+    </script>
+
+
 
 </head>
 
@@ -182,11 +86,12 @@
             <a class="text-sm font-bold underline" href="{{ url('/animales') }}">Especies</a>
             <a class="text-sm font-bold underline" href="{{ url('/venfermedades') }}">Enfermedades</a>
 
-            <form action="{{ route('busqueda.especies') }}" method="GET" class="d-flex ms-3 search-form">
-                <input type="text" name="termino" placeholder="Buscar especies..." required
-                    class="form-control search-input">
-                <button type="submit" class="btn btn-search">Buscar</button>
+            <form action="{{ route('buscar') }}" method="GET" class="search-form">
+                <input type="text" name="termino" id="termino" class="search-input" placeholder="Buscar especies...">
+                <button type="submit" class="search-button">Buscar</button>
             </form>
+
+
 
             <!-- Navigation links -->
             @if (Route::has('login'))

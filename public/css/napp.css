@@ -1,0 +1,131 @@
+        /* Estilo para el pie de página */
+        /* Estilo para el pie de página */
+        
+        .custom-footer {
+            background-color: #55212e;
+            padding: 4rem 0;
+            /* Aumentar el espaciado para que sea más alargado */
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            font-size: 0.9rem;
+            color: #ffffff;
+            /* Cambiar color del texto para contraste */
+        }
+        
+        .footer-links h4,
+        .footer-icons h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            /* Cambiar color del título para contraste */
+        }
+        
+        .footer-links a,
+        .footer-icons a {
+            color: #ffffff;
+            /* Cambiar color de los enlaces */
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover,
+        .footer-icons a:hover {
+            color: #d1a5ab;
+            /* Color más claro al pasar el mouse */
+            text-decoration: underline;
+        }
+        
+        .footer-icons img {
+            width: 30px;
+            margin: 0 10px;
+            transition: transform 0.3s;
+        }
+        
+        .footer-icons img:hover {
+            transform: scale(1.1);
+        }
+        
+        .footer-text {
+            margin-top: 2rem;
+            /* Espaciado superior para el texto de derechos */
+            font-size: 0.9rem;
+            color: #d1a5ab;
+            /* Color más claro para derechos */
+        }
+        /* Estilo del formulario de búsqueda */
+        /* Estilo del formulario de búsqueda */
+        
+        .search-form {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            padding: 1rem;
+            border-radius: 10px;
+            /* Elimino la sombra */
+            box-shadow: none;
+        }
+        /* Estilos para el campo de entrada */
+        
+        .search-input {
+            border: 2px solid #8a2036;
+            padding: 0.8rem 1.2rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            color: #333;
+            width: 100%;
+            max-width: 450px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            box-sizing: border-box;
+        }
+        
+        .search-input::placeholder {
+            color: #bbb;
+            font-style: italic;
+        }
+        
+        .search-input:focus {
+            border-color: #5a141e;
+            box-shadow: 0 0 8px rgba(138, 32, 54, 0.5);
+            outline: none;
+        }
+        /* Estilos para el botón de búsqueda */
+        
+        .search-button {
+            background-color: #8a2036;
+            color: #fff;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .search-button:hover {
+            background-color: #5a141e;
+            transform: translateY(-2px);
+        }
+        
+        .search-button:active {
+            transform: translateY(0);
+        }
+        /* Estilos responsivos */
+        
+        @media (max-width: 768px) {
+            .search-form {
+                flex-direction: column;
+                gap: 1.2rem;
+            }
+            .search-input {
+                width: 100%;
+                max-width: none;
+            }
+            .search-button {
+                width: 100%;
+            }
+        }

@@ -7,16 +7,14 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
-     *
-     * @return void
+     * Run the migrations
+     *  @return void.
      */
     public function up()
     {
-        // Creación de la tabla tipo_enfermedades
-        Schema::create('tipo_enfermedades', function (Blueprint $table) {
-            $table->bigIncrements('id_tipo');
-            $table->string('desc_tipo', 250)->nullable();
+        Schema::create('tipo_publicacion', function (Blueprint $table) {
+            $table->bigIncrements('id_tipo_p');
+            $table->string('desc_tipo',250)->nullable();
             $table->timestamps();
         });
     }
@@ -24,10 +22,10 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      *
-     * @return void
+     *  @return void
      */
     public function down()
     {
-        Schema::dropIfExists('tipo_enfermedades');
+        Schema::dropIfExists('tipo_publicacions');
     }
 };

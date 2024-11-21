@@ -44,6 +44,7 @@ class MultimediaController extends Controller
     if ($request->hasFile('multimedia')) {
         $file = $request->file('multimedia');
 
+
         // Almacena el archivo en 'public/multimedia' y guarda el nombre del archivo
         $filePath = $file->store('multimedia', 'public');
 

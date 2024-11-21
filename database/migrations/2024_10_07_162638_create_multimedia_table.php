@@ -17,6 +17,7 @@ return new class extends Migration
             $table->bigIncrements('id_multimedia');
             $table->string('nombre', 100)->nullable(); // Nombre del archivo multimedia
             $table->string('multimedia',200)->nullable(); // Contenido del archivo multimedia en formato blob
+            $table->string('tipo_multimedia',200)->nullable();
             $table->timestamps();
 
         });

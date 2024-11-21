@@ -53,7 +53,8 @@ Route::resource('asigna-enfermedades', AsignaEnfermedadeController::class);
 Route::resource('asigna-rutas', AsignaRutaController::class);
 Route::resource('asigna-comentarios', AsignaComentarioController::class);
 
-Route::get('/buscar-especies', [BusquedaEspeciesController::class, 'buscar'])->name('busqueda.especies');
+Route::get('/buscar', [BusquedaEspeciesController::class, 'buscar'])->name('buscar');
+Route::get('/buscar-autocompletar', [BusquedaEspeciesController::class, 'autocompletar'])->name('buscar.autocompletar');
 
 Route::resource('animales', ConsultaEspeciesController::class);
 Route::resource('venfermedades', ConsultaEnfermedades ::class);
