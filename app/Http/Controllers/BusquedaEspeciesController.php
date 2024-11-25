@@ -12,7 +12,7 @@ class BusquedaEspeciesController extends Controller
     {
         // Validamos el término de búsqueda
         $request->validate([
-            'termino' => ['required', 'string', 'min:3', 'regex:/^[a-zA-Z0-9\s]+$/'],
+            'termino' => ['required', 'string', 'min:3', 'regex:/^[\pL\pN\s,.´-]+$/u'],
         ]);
 
         // Obtenemos el término de búsqueda

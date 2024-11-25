@@ -14,15 +14,23 @@
 
 
     <script>
-        const carousel = document.querySelector('.carousel-images');
+        let currentIndex = 0;
 
-        carousel.addEventListener('mouseover', () => {
-            carousel.style.animationPlayState = 'paused';
-        });
+        function slideCarousel() {
+            const carousel = document.querySelector('.carousel-images');
+            const images = document.querySelectorAll('.carousel-images img');
+            const totalImages = images.length;
 
-        carousel.addEventListener('mouseout', () => {
-            carousel.style.animationPlayState = 'running';
-        });
+            // Calcula la posición de desplazamiento
+            currentIndex = (currentIndex + 1) % totalImages;
+            const offset = currentIndex * -100;
+
+            // Aplica la transformación
+            carousel.style.transform = `translateX(${offset}%)`;
+        }
+
+        // Ejecuta la función cada 3 segundos
+        setInterval(slideCarousel, 3000);N
     </script>
 
     <script>
@@ -87,7 +95,8 @@
             <a class="text-sm font-bold underline" href="{{ url('/venfermedades') }}">Enfermedades</a>
 
             <form action="{{ route('buscar') }}" method="GET" class="search-form">
-                <input type="text" name="termino" id="termino" class="search-input" placeholder="Buscar especies...">
+                <input type="text" name="termino" id="termino" class="search-input"
+                    placeholder="Buscar especies...">
                 <button type="submit" class="search-button">Buscar</button>
             </form>
 
@@ -137,13 +146,15 @@
         <section class="bg-gray-300 shadow-md rounded-lg p-6 mt-6 custom-section">
             <div class="flex flex-col md:flex-row">
                 <div class="md:w-1/2">
-                    <div class="carousel-container">
-                        <div class="carousel-images">
-                            <img src="/images/mapaches.jpg" alt="Mapache">
-                            <img src="/images/liebre.jpg" alt="Venado">
-                            <!-- Agrega más imágenes según las especies que tengas -->
+                    <div class="carousel-container overflow-hidden relative">
+                        <div class="carousel-images flex transition-transform duration-700">
+                            <img src="/images/mapaches.jpg" alt="Mapache" class="w-full">
+                            <img src="/images/liebre.jpg" alt="Liebre" class="w-full">
+                            <img src="/images/Armadillo.png" alt="Armadillo" class="w-full">
+                            <img src="/images/puma.jpg" alt="Puma" class="w-full">
                         </div>
                     </div>
+
                 </div>
                 <div class="md:w-1/2 md:ml-6 mt-4 md:mt-0">
                     <h2 class="text-2xl font-bold mb-4">Más de 60 especies observadas</h2>

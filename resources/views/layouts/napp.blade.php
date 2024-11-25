@@ -18,9 +18,12 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <link rel="stylesheet" href="{{ asset('css/napp.css') }}">
 
+    <!-- JQuery & JQuery UI -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
+    
 
     <script>
         $(function () {
@@ -28,41 +31,34 @@
                 source: function (request, response) {
                     $.ajax({
                         url: "{{ route('buscar.autocompletar') }}",
-                        data: {
-                            termino: request.term
-                        },
+                        data: { termino: request.term },
                         success: function (data) {
                             response(data);
                         }
                     });
                 },
                 minLength: 3,
+                appendTo: ".search-form", // Hace que el dropdown esté contenido dentro del navbar
                 select: function (event, ui) {
-                    // Opcional: manejar cuando el usuario selecciona una opción
-                    $('#termino').val(ui.item.value);
+                    $('#termino').val(ui.item.value); // Rellenar el input con el valor seleccionado
                 }
             });
         });
     </script>
-
 </head>
 
 <body>
     <div id="app">
         <!-- Barra de navegación fija en la parte superior -->
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed-top" style="padding: 0.25rem 1rem;">
-            <div class="container d-flex justify-content-center align-items-center">
+            <div class="container d-flex justify-content-between align-items-center">
                 <div class="d-flex align-items-center">
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        <img src="/images/Logo.png" alt="Sari" style="width:25px;">
-                        <!-- Reducir el tamaño del logo -->
+                        <img src="/images/Logo.png" alt="Logo" style="width:25px;">
                     </a>
-                    <a class="navbar-link ms-2" href="{{ url('/') }}"
-                        style="font-size: 1rem; color: #8a2036;">Inicio</a>
-                    <a class="navbar-link ms-2" href="{{ url('/animales') }}"
-                        style="font-size: 1rem; color: #8a2036;">Especies</a>
-                    <a class="navbar-link ms-2" href="{{ url('/venfermedades') }}"
-                        style="font-size: 1rem; color: #8a2036;">Enfermedades</a>
+                    <a class="navbar-link ms-2" href="{{ url('/') }}" style="font-size: 1rem; color: #8a2036;">Inicio</a>
+                    <a class="navbar-link ms-2" href="{{ url('/animales') }}" style="font-size: 1rem; color: #8a2036;">Especies</a>
+                    <a class="navbar-link ms-2" href="{{ url('/venfermedades') }}" style="font-size: 1rem; color: #8a2036;">Enfermedades</a>
                 </div>
 
                 <!-- Cuadro de búsqueda de especies -->
@@ -70,7 +66,6 @@
                     <input type="text" name="termino" id="termino" class="search-input" placeholder="Buscar especies...">
                     <button type="submit" class="search-button">Buscar</button>
                 </form>
-
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -83,15 +78,13 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a href="{{ route('login') }}"
-                                        class="text-sm font-bold dark:text-gray-100 underline m-1"
+                                    <a href="{{ route('login') }}" class="text-sm font-bold dark:text-gray-100 underline m-1"
                                         style="color: #8a2036; font-size: 0.9rem;">Iniciar Sesión</a>
                                 </li>
                             @endif
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a href="{{ route('register') }}"
-                                        class="ml-3 text-sm font-bold dark:text-gray-300 underline m-1"
+                                    <a href="{{ route('register') }}" class="ml-3 text-sm font-bold dark:text-gray-300 underline m-1"
                                         style="color: #8a2036; font-size: 0.9rem;">Registrarse</a>
                                 </li>
                             @endif
@@ -126,35 +119,18 @@
             </div>
         </nav>
 
-
         <main class="py-4" style="margin-top: 70px;">
-            <!-- Contenedor para el contenido principal -->
             @yield('content')
         </main>
 
         <!-- Footer -->
         <footer class="custom-footer">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-6 footer-links">
-                        <h4>Enlaces útiles</h4>
-                        <a href="#">Inicio</a> |
-                        <a href="#">Acerca de</a> |
-                        <a href="#">Contacto</a>
-                    </div>
-                    <div class="col-md-6 footer-icons text-md-end">
-                        <h4>Síguenos</h4>
-                        <a href="#"><img src="path/to/facebook-icon.png" alt="Facebook"></a>
-                        <a href="#"><img src="path/to/instagram-icon.png" alt="Instagram"></a>
-                        <a href="#"><img src="path/to/twitter-icon.png" alt="Twitter"></a>
-                    </div>
-                </div>
                 <div class="footer-text text-center mt-3">
                     © 2024 FaunaTEC. Todos los derechos reservados.
                 </div>
             </div>
         </footer>
-
     </div>
 </body>
 

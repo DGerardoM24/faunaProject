@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('publicaciones', function (Blueprint $table) {
             $table->bigIncrements('id_publicacion'); // Llave primaria auto incrementable
             $table->string('titulo', 250)->nullable();
+            $table->text('desc_publicacion', 550)->nullable();
             $table->bigInteger('id_tipo_p')->unsigned()->nullable(); // Llave foránea
             $table->timestamp('fecha_p')->nullable(); // Fecha de publicación
             $table->bigInteger('id')->unsigned()->nullable(); // Llave foránea que hace referencia a 'users'

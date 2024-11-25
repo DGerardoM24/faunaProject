@@ -8,7 +8,6 @@
     <div class="container">
         <h2 class="text-center">Resultados de la búsqueda para: "{{ str_replace('%', '', $termino) }}"</h2>
 
-
         @if ($resultados->isEmpty())
             <p>No se encontraron especies que coincidan con el término.</p>
         @else
@@ -45,7 +44,9 @@
 
     <style>
         /* Estilos personalizados */
-        .container {}
+        .container {
+            
+        }
 
         .card {
             background-color: #8a2035;
@@ -107,6 +108,6 @@
         }
     </style>
 
-    
+
 
 @endsection

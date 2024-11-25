@@ -1,131 +1,186 @@
-        /* Estilo para el pie de página */
-        /* Estilo para el pie de página */
-        
-        .custom-footer {
-            background-color: #55212e;
-            padding: 4rem 0;
-            /* Aumentar el espaciado para que sea más alargado */
-            position: relative;
-            bottom: 0;
-            width: 100%;
-            font-size: 0.9rem;
-            color: #ffffff;
-            /* Cambiar color del texto para contraste */
+/* Estilo para el pie de página */
+
+.custom-footer {
+    background-color: #55212e;
+    padding: 20px;
+    color: white;
+    box-shadow: none;
+    /* Eliminar sombra si existiera */
+}
+
+
+/* Títulos dentro del pie de página */
+
+.footer-links h4,
+.footer-icons h4 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+    /* Cambiar color del título para contraste */
+}
+
+
+/* Enlaces dentro del pie de página */
+
+.footer-links a,
+.footer-icons a {
+    color: #f0f0f0;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover,
+.footer-icons a:hover {
+    color: #cccccc;
+    text-decoration: underline;
+}
+
+
+/* Iconos dentro del pie de página */
+
+.footer-icons img {
+    width: 25px;
+    height: 25px;
+    filter: brightness(0) invert(1);
+    transition: transform 0.3s ease;
+}
+
+.footer-icons img:hover {
+    transform: scale(1.1);
+}
+
+
+/* Texto de derechos en el pie de página */
+
+.footer-text {
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    color: #d1a5ab;
+}
+
+
+/* Estilo del formulario de búsqueda */
+
+.search-form {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: center;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: none;
+}
+
+
+/* Estilos para el campo de entrada */
+
+.search-input {
+    border: 2px solid #8a2036;
+    padding: 0.8rem 1.2rem;
+    border-radius: 25px;
+    font-size: 1rem;
+    color: #333;
+    width: 100%;
+    max-width: 450px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box;
+}
+
+.search-input::placeholder {
+    color: #bbb;
+    font-style: italic;
+}
+
+.search-input:focus {
+    border-color: #5a141e;
+    box-shadow: 0 0 8px rgba(138, 32, 54, 0.5);
+    outline: none;
+}
+
+
+/* Estilos para el botón de búsqueda */
+
+.search-button {
+    background-color: #8a2036;
+    color: #fff;
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-button:hover {
+    background-color: #721a2b;
+    transform: translateY(-2px);
+}
+
+.search-button:active {
+    transform: translateY(0);
+}
+
+
+/* Estilos responsivos */
+
+@media (max-width: 768px) {
+    .search-form {
+        flex-direction: column;
+        gap: 1.2rem;
+    }
+    .search-input {
+        width: 100%;
+        max-width: none;
+    }
+    .search-button {
+        width: 100%;
+    }
+    .custom-footer {
+        padding: 2rem 0;
+        /* Reducción de espacio en pantallas pequeñas */
+    }
+}
+
+.ui-autocomplete {
+    z-index: 1050;
+    /* Un valor mayor que el de la barra de navegación */
+}
+
+
+/* Asegúrate de que la barra de navegación tenga un z-index adecuado */
+
+.navbar {
+    z-index: 1000;
+    /* Puedes ajustar esto según sea necesario */
+}
+
+        .ui-autocomplete {
+            z-index: 1050; /* Asegura que el menú se muestre sobre el navbar */
+            position: absolute;
         }
-        
-        .footer-links h4,
-        .footer-icons h4 {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            color: #ffffff;
-            /* Cambiar color del título para contraste */
-        }
-        
-        .footer-links a,
-        .footer-icons a {
-            color: #ffffff;
-            /* Cambiar color de los enlaces */
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .footer-links a:hover,
-        .footer-icons a:hover {
-            color: #d1a5ab;
-            /* Color más claro al pasar el mouse */
-            text-decoration: underline;
-        }
-        
-        .footer-icons img {
-            width: 30px;
-            margin: 0 10px;
-            transition: transform 0.3s;
-        }
-        
-        .footer-icons img:hover {
-            transform: scale(1.1);
-        }
-        
-        .footer-text {
-            margin-top: 2rem;
-            /* Espaciado superior para el texto de derechos */
-            font-size: 0.9rem;
-            color: #d1a5ab;
-            /* Color más claro para derechos */
-        }
-        /* Estilo del formulario de búsqueda */
-        /* Estilo del formulario de búsqueda */
-        
+
         .search-form {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            justify-content: center;
-            padding: 1rem;
-            border-radius: 10px;
-            /* Elimino la sombra */
-            box-shadow: none;
+            position: relative;
         }
-        /* Estilos para el campo de entrada */
-        
+
         .search-input {
-            border: 2px solid #8a2036;
-            padding: 0.8rem 1.2rem;
-            border-radius: 25px;
-            font-size: 1rem;
-            color: #333;
-            width: 100%;
-            max-width: 450px;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-            box-sizing: border-box;
+            width: 200px;
+            padding: 5px;
+            font-size: 0.9rem;
         }
-        
-        .search-input::placeholder {
-            color: #bbb;
-            font-style: italic;
-        }
-        
-        .search-input:focus {
-            border-color: #5a141e;
-            box-shadow: 0 0 8px rgba(138, 32, 54, 0.5);
-            outline: none;
-        }
-        /* Estilos para el botón de búsqueda */
-        
+
         .search-button {
+            padding: 5px 10px;
+            font-size: 0.9rem;
             background-color: #8a2036;
             color: #fff;
-            padding: 0.8rem 2rem;
             border: none;
-            border-radius: 25px;
-            font-size: 1rem;
             cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
-        
+
         .search-button:hover {
-            background-color: #5a141e;
-            transform: translateY(-2px);
-        }
-        
-        .search-button:active {
-            transform: translateY(0);
-        }
-        /* Estilos responsivos */
-        
-        @media (max-width: 768px) {
-            .search-form {
-                flex-direction: column;
-                gap: 1.2rem;
-            }
-            .search-input {
-                width: 100%;
-                max-width: none;
-            }
-            .search-button {
-                width: 100%;
-            }
+            background-color: #a02442;
         }
