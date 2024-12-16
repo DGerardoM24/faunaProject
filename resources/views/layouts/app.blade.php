@@ -208,7 +208,7 @@
                 </div>
 
                 <!-- Cuadro de búsqueda de especies -->
-                <form action="{{ route('busqueda.especies') }}" method="GET" class="d-flex ms-3 search-form">
+                <form action="{{ route('buscar') }}" method="GET" class="d-flex ms-3 search-form">
                     <input type="text" name="termino" placeholder="Buscar especies..." required class="form-control search-input">
                     <button type="submit" class="btn btn-search">Buscar</button>
                 </form>
